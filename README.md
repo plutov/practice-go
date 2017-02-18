@@ -1,6 +1,6 @@
 ### Go exercises and elegant solutions
 
- - [SOLVED BY @macocha] chess
+ - [SOLVED BY [@macocha](https://github.com/macocha)] chess
 
 ### How to solve
 
