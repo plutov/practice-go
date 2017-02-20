@@ -1,6 +1,7 @@
 ### Go exercises and elegant solutions
 
  - [SOLVED BY [@macocha](https://github.com/macocha)] chess
+ - [NOT SOLVED] floyd
 
 ### How to solve
 
