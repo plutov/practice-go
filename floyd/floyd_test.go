@@ -19,7 +19,7 @@ var tests = []struct {
 
 func TestFloydTriangle(t *testing.T) {
 	for _, test := range tests {
-		actual := FloydTriangle(test.rowsCount)
+		actual := Triangle(test.rowsCount)
 		if len(actual) != len(test.expected) {
 			t.Fatalf("FloydTriangle(%d) expected length %d, got %d", test.rowsCount, len(test.expected), len(actual))
 		}
@@ -39,7 +39,7 @@ func TestFloydTriangle(t *testing.T) {
 func BenchmarkTestFloydTriangle(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, test := range tests {
-			FloydTriangle(test.rowsCount)
+			Triangle(test.rowsCount)
 		}
 	}
 }
