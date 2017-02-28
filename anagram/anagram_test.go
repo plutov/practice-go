@@ -1,25 +1,32 @@
 package anagram
 
-import (
-	"io/ioutil"
-	"strings"
-	"testing"
-)
+import "testing"
 
-var dictionary []string
+var dictionary = []string{
+	"about",
+	"above",
+	"angel",
+	"angle",
+	"batten",
+	"battery",
+	"battle",
+	"galen",
+	"evil",
+	"lager",
+	"large",
+	"le batt",
+}
 
 var tests = []struct {
 	word     string
 	expected []string
 }{
 	{"", []string{}},
-}
-
-func init() {
-	content, err := ioutil.ReadFile("dictionary.txt")
-	if err == nil {
-		dictionary = strings.Split(string(content), "\n")
-	}
+	{" ", []string{}},
+	{"angel", []string{"angle", "galen"}},
+	{"evil", []string{}},
+	{"levi", []string{"evil"}},
+	{"le batt", []string{}},
 }
 
 func TestFindAnagrams(t *testing.T) {
