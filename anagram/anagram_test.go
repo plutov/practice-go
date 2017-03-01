@@ -1,21 +1,14 @@
 package anagram
 
-import "testing"
+import (
+	"fmt"
+	"io/ioutil"
+	"net/http"
+	"strings"
+	"testing"
+)
 
-var dictionary = []string{
-	"about",
-	"above",
-	"angel",
-	"angle",
-	"batten",
-	"battery",
-	"battle",
-	"galen",
-	"evil",
-	"lager",
-	"large",
-	"le batt",
-}
+var dictionary []string
 
 var tests = []struct {
 	word     string
@@ -23,10 +16,25 @@ var tests = []struct {
 }{
 	{"", []string{}},
 	{" ", []string{}},
-	{"angel", []string{"angle", "galen"}},
-	{"evil", []string{}},
-	{"levi", []string{"evil"}},
+	{"angel", []string{"angle", "galen", "glean", "lange"}},
+	{"evil", []string{"levi", "live", "veil", "vile"}},
 	{"le batt", []string{}},
+}
+
+func init() {
+	r, err := http.Get("http://www.puzzlers.org/pub/wordlists/unixdict.txt")
+	if err != nil {
+		panic(err)
+		return
+	}
+	content, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		panic(err)
+		return
+	}
+
+	dictionary = strings.Split(string(content), "\n")
+	fmt.Printf("%d words in dictionary\n", len(dictionary))
 }
 
 func TestFindAnagrams(t *testing.T) {
