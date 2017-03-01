@@ -18,6 +18,10 @@ var tests = []struct {
 	{"Eleven plus two", []string{"Twelve plus one"}},
 	{"Clint Eastwood", []string{"Old West Action"}},
 	{"Protectionism", []string{"Cite no imports", "Nice to imports"}},
+	{"Protection", []string{}},
+	{"Funeral", []string{"Real fun"}},
+	{"The Doors", []string{}},
+	{"funeral", []string{"Real fun"}},
 }
 
 func init() {
