@@ -28,7 +28,6 @@ func init() {
 	content, err := ioutil.ReadFile("dictionary.txt")
 	if err != nil {
 		panic(err)
-		return
 	}
 
 	dictionary = strings.Split(string(content), "\n")
