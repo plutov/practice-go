@@ -38,7 +38,7 @@ func TestFindAnagrams(t *testing.T) {
 	for _, test := range tests {
 		actual := FindAnagrams(dictionary, test.word)
 		if len(actual) != len(test.expected) {
-			t.Fatalf("FindAnagrams(%s) expected length %d, got %d", test.word, len(test.expected), len(actual))
+			t.Fatalf("FindAnagrams(%s) expected length %d, got %d: %v", test.word, len(test.expected), len(actual), actual)
 		}
 
 		for k, v := range test.expected {
