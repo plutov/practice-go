@@ -1,9 +1,12 @@
 package anagram
 
+import "strings"
+
 func FindAnagrams(dictionary []string, word string) (result []string) {
-	cachedParsing := parseCharDic(word)
+	loweredWord := strings.TrimSpace(strings.ToLower(word))
+	cachedParsing := parseCharDic(loweredWord)
 	for _, value := range dictionary {
-		if isAnagram(word, value, cachedParsing) {
+		if isAnagram(loweredWord, strings.ToLower(value), cachedParsing) {
 			result = append(result, value)
 		}
 	}
@@ -12,9 +15,6 @@ func FindAnagrams(dictionary []string, word string) (result []string) {
 
 func isAnagram(word1, word2 string, parsedWord1 map[rune]int) bool {
 	if word1 == word2 {
-		return false
-	}
-	if len(word1) != len(word2) {
 		return false
 	}
 
@@ -27,6 +27,7 @@ func parseCharDic(word string) (result map[rune]int) {
 	for _, char := range word {
 		result[char] = result[char] + 1
 	}
+	delete(result, ' ')
 
 	return result
 }
