@@ -2,7 +2,7 @@
 
  - [SOLVED BY [@macocha](https://github.com/macocha)] chess
  - [SOLVED BY [@kennygrant](https://github.com/kennygrant)] floyd
- - [NOT SOLVED] anagram
+ - [SOLVED BY [@kennygrant](https://github.com/kennygrant)] anagram
 
 ### How to solve
 
