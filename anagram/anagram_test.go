@@ -3,7 +3,6 @@ package anagram
 import (
 	"fmt"
 	"io/ioutil"
-	"net/http"
 	"strings"
 	"testing"
 )
@@ -16,21 +15,19 @@ var tests = []struct {
 }{
 	{"", []string{}},
 	{" ", []string{}},
-	{"angel", []string{"angle", "galen", "glean", "lange"}},
-	{"evil", []string{"levi", "live", "veil", "vile"}},
-	{"le batt", []string{}},
+	{"Eleven plus two", []string{"Twelve plus one"}},
+	{"Clint Eastwood", []string{"Old West Action"}},
+	{"Protectionism", []string{"Cite no imports", "Nice to imports"}},
+	{"Protection", []string{}},
+	{"Funeral", []string{"Real fun"}},
+	{"The Doors", []string{}},
+	{"funeral", []string{"Real fun"}},
 }
 
 func init() {
-	r, err := http.Get("http://www.puzzlers.org/pub/wordlists/unixdict.txt")
+	content, err := ioutil.ReadFile("dictionary.txt")
 	if err != nil {
 		panic(err)
-		return
-	}
-	content, err := ioutil.ReadAll(r.Body)
-	if err != nil {
-		panic(err)
-		return
 	}
 
 	dictionary = strings.Split(string(content), "\n")
