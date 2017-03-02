@@ -49,7 +49,7 @@ func TestFindAnagrams(t *testing.T) {
 	}
 }
 
-func BenchmarkTestFloydTriangle(b *testing.B) {
+func BenchmarkTestAnagrams(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, test := range tests {
 			FindAnagrams(dictionary, test.word)
