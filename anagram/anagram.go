@@ -1,30 +1,51 @@
 package anagram
 
-import (
-	"strings"
-)
+import "strings"
 
-func normalize(s string) string {
-	return strings.Replace(strings.ToLower(s), " ", "", -1)
-}
-
-// FindAnagrams returns the anagrams of word from dictionary
-func FindAnagrams(dictionary []string, word string) []string {
-	var anagrams []string
+func FindAnagrams(dictionary []string, word string) (result []string) {
 	word = normalize(word)
 	if len(word) == 0 {
 		return nil
 	}
 
-	for _, w := range dictionary {
-		ww := normalize(w)
+	charDir := parseCharDic(word)
+	for _, value := range dictionary {
+		ww := normalize(value)
 		// ignore exact match or empty word(not anagram)
 		if ww == word || len(ww) == 0 {
 			continue
 		}
-		if len(strings.Trim(ww, word)) == 0 {
-			anagrams = append(anagrams, w)
+
+		if compareDics(charDir, parseCharDic(ww)) {
+			result = append(result, value)
 		}
 	}
-	return anagrams
+	return result
+}
+
+func normalize(s string) string {
+	return strings.Replace(strings.ToLower(s), " ", "", -1)
+}
+
+func parseCharDic(word string) (result map[rune]int) {
+	result = make(map[rune]int)
+	for _, char := range word {
+		result[char] = result[char] + 1
+	}
+
+	return result
+}
+
+func compareDics(dic1, dic2 map[rune]int) bool {
+	if len(dic1) != len(dic2) {
+		return false
+	}
+
+	for key, value := range dic1 {
+		if dic2[key] != value {
+			return false
+		}
+	}
+
+	return true
 }
