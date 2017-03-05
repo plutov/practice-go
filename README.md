@@ -3,7 +3,7 @@
  - [SOLVED BY [@macocha](https://github.com/macocha)] chess
  - [SOLVED BY [@kennygrant](https://github.com/kennygrant)] floyd
  - [SOLVED BY [@ledongthuc](https://github.com/ledongthuc)] anagram
- - [NOT SOLVED] jaro
+ - [SOLVED BY [@heliac2000](https://github.com/heliac2000)] jaro
 
 ### How to solve
 
