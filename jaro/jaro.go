@@ -59,19 +59,16 @@ func Distance(word1 string, word2 string) float64 {
 
 	// transpositions
 	t, rw1, rw2 := 0, []rune(word1), []rune(word2)
-	for i, k, c := 0, 0, 0; c < m; i++ {
+	for i, j, k, c := 0, 0, 0, 0; c < m; i++ {
 		if w1[i] != 0 {
 			continue
 		}
-		for j := k; j < l2; j++ {
-			if w2[j] == 0 {
-				if rw1[i] != rw2[j] {
-					t++
-				}
-				k, c = j+1, c+1
-				break
-			}
+		for j = k; w2[j] != 0; j++ {
 		}
+		if rw1[i] != rw2[j] {
+			t++
+		}
+		k, c = j+1, c+1
 	}
 
 	// Jaro distance
