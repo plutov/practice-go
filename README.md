@@ -4,6 +4,7 @@
  - [SOLVED BY [@kennygrant](https://github.com/kennygrant)] floyd
  - [SOLVED BY [@ledongthuc](https://github.com/ledongthuc)] anagram
  - [SOLVED BY [@heliac2000](https://github.com/heliac2000)] jaro
+ - [NOT SOLVED] mergesort
 
 ### How to solve
 
