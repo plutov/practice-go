@@ -8,7 +8,7 @@
 
 ### How to solve
 
- - Each folder has a README.md file and _test.go file, check it and find what kind of function you need to implement
- - Code this function in the separate .go file inside a package. You may use anything you want except 3rd-party packages
- - Create a PR with one .go file
- - The most fast and elegant solution will be merged into this repo
+ - Each folder has a README.md file and _test.go file, check it and find what kind of function you need to implement.
+ - Code this function in the separate .go file inside a package and run tests. You may use anything you want except 3rd-party packages.
+ - Create a PR with one .go file.
+ - We will choose the most fast and elegant solution and merge into the repo within 7 days.
