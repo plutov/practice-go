@@ -4,7 +4,7 @@
  - [SOLVED BY [@kennygrant](https://github.com/kennygrant)] floyd
  - [SOLVED BY [@ledongthuc](https://github.com/ledongthuc)] anagram
  - [SOLVED BY [@heliac2000](https://github.com/heliac2000)] jaro
- - [NOT SOLVED] mergesort
+ - [SOLVED BY [@nguyengiabk](https://github.com/nguyengiabk)] mergesort
  - [NOT SOLVED] wordladder
 
 ### How to solve
