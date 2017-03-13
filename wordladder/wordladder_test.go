@@ -1,4 +1,4 @@
-package mergesort
+package wordladder
 
 import "testing"
 
