@@ -5,7 +5,7 @@
  - [SOLVED BY [@ledongthuc](https://github.com/ledongthuc)] anagram
  - [SOLVED BY [@heliac2000](https://github.com/heliac2000)] jaro
  - [SOLVED BY [@nguyengiabk](https://github.com/nguyengiabk)] mergesort
- - [NOT SOLVED] wordladder
+ - [SOLVED BY [@nguyengiabk](https://github.com/nguyengiabk)] wordladder
 
 ### How to solve
 
