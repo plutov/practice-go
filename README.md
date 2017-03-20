@@ -6,6 +6,7 @@
  - [SOLVED BY [@heliac2000](https://github.com/heliac2000)] jaro
  - [SOLVED BY [@nguyengiabk](https://github.com/nguyengiabk)] mergesort
  - [SOLVED BY [@nguyengiabk](https://github.com/nguyengiabk)] wordladder
+ - [NOT SOLVED] sumdecimal
 
 ### How to solve
 
