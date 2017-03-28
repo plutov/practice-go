@@ -7,6 +7,7 @@
  - [SOLVED BY [@nguyengiabk](https://github.com/nguyengiabk)] mergesort
  - [SOLVED BY [@nguyengiabk](https://github.com/nguyengiabk)] wordladder
  - [NOT SOLVED] sumdecimal
+ - [NOT SOLVED] buildword
 
 ### How to solve
 

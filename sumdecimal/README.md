@@ -1,6 +1,6 @@
 ### Sum Decimal
 
-You are given a number `n`. Your task is to return the sum of the first 1000 decimal places of the square root of `n`.
+You are given a number `n`. Your task is to return the sum of the first 1000 decimal places of the square root of `n`. The most difficult part in Go is to get the `Sqrt` with arbitrary precision.
 
 ### Example
 
