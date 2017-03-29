@@ -7,8 +7,8 @@ What is the minimum number of elements you have to use? Return 0 if it's not pos
 ### Example
 
 ```
-// bu + uild + wo + rd
-BuildWord("buildword", []string{"buil", "dwor", "bu", "uild", "wo", "rd"}) = 4
+// bu + ild + wo + rd
+BuildWord("buildword", []string{"buil", "dwor", "bu", "ild", "wo", "rd"}) = 4
 ```
 
 ### Run tests with benchmarks
