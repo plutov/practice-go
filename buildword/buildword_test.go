@@ -7,7 +7,7 @@ var tests = []struct {
 	fragments []string
 	expected  int
 }{
-	{"buildword", []string{"buil", "dwor", "bu", "uild", "wo", "rd"}, 4},
+	{"buildword", []string{"buil", "dwor", "bu", "ild", "wo", "rd"}, 4},
 	{"answer", []string{"wer", "ans"}, 2},
 	{"aaaaaa", []string{"a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa"}, 1},
 	{"veeerrryy ttrrricckkkyy tteessssttt", []string{"tt", "t", "ee", "e", "v", "rr", "rrr", "kkk", "cc", "ssss", "y", "yy", " ", "ii", "i"}, 18},
