@@ -6,9 +6,9 @@
  - [SOLVED BY [@heliac2000](https://github.com/heliac2000)] jaro
  - [SOLVED BY [@nguyengiabk](https://github.com/nguyengiabk)] mergesort
  - [SOLVED BY [@nguyengiabk](https://github.com/nguyengiabk)] wordladder
- - [SOLVED BU [@EvenPeng](https://github.com/EvenPeng)] sumdecimal
+ - [SOLVED BY [@EvenPeng](https://github.com/EvenPeng)] sumdecimal
  - [SOLVED BY [@bediger4000](https://github.com/bediger4000)] buildword
- - [SOLVEDBY [@zerkms](https://github.com/zerkms)] shorthash
+ - [SOLVED BY [@zerkms](https://github.com/zerkms)] shorthash
 
 ### How to solve
 
