@@ -7,7 +7,7 @@
  - [SOLVED BY [@nguyengiabk](https://github.com/nguyengiabk)] mergesort
  - [SOLVED BY [@nguyengiabk](https://github.com/nguyengiabk)] wordladder
  - [NOT SOLVED] sumdecimal
- - [NOT SOLVED] buildword
+ - [SOLVED BY [@bediger4000](https://github.com/bediger4000)] buildword
  - [NOT SOLVED] shorthash
 
 ### How to solve
