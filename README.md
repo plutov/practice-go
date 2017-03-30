@@ -8,7 +8,7 @@
  - [SOLVED BY [@nguyengiabk](https://github.com/nguyengiabk)] wordladder
  - [NOT SOLVED] sumdecimal
  - [SOLVED BY [@bediger4000](https://github.com/bediger4000)] buildword
- - [NOT SOLVED] shorthash
+ - [SOLVEDBY [@zerkms](https://github.com/zerkms)] shorthash
 
 ### How to solve
 
