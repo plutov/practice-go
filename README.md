@@ -9,6 +9,7 @@
  - [SOLVED BY [@EvenPeng](https://github.com/EvenPeng)] sumdecimal
  - [SOLVED BY [@bediger4000](https://github.com/bediger4000)] buildword
  - [SOLVED BY [@zerkms](https://github.com/zerkms)] shorthash
+ - [NOT SOLVED] romannumerals
 
 ### How to solve
 
