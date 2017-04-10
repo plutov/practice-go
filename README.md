@@ -1,4 +1,4 @@
-### Go exercises and elegant solutions
+### Go exercises and elegant solutions [![Build Status](https://travis-ci.org/plutov/practice-go.svg?branch=master)](https://travis-ci.org/plutov/practice-go)
 
  - [SOLVED BY [@macocha](https://github.com/macocha)] chess
  - [SOLVED BY [@kennygrant](https://github.com/kennygrant)] floyd
