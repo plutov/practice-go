@@ -5,7 +5,7 @@ Create a function that finds the time from this [http://tycho.usno.navy.mil/cgi-
 ### Examples
 
 ```
-Apr. 19, 12:59:44 UTC
+//Apr. 19, 12:59:44 UTC
 GetTime("UTC")
 ```
 
