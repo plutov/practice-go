@@ -48,7 +48,7 @@ func generateTimesForTimezone(timezone string, span int) ([]string, error) {
 		if timezone == "UTC" {
 			format = "Jan. 2, 15:04:05"
 		} else {
-			format = "Jan. 2, 15:04:05 PM"
+			format = "Jan. 2, 03:04:05 PM"
 		}
 
 		formattedOffsetTime := offsetTime.Format(format) + " " + timezone
