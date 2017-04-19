@@ -15,18 +15,15 @@ var timezones = map[string]string{
 	"HAST": "US/Hawaii",
 }
 
-var tests = []struct {
-	timezone string
-	expected string
-}{
-	{"", ""},
-	{"DT", ""},
-	{"Alaska", ""},
-	{"UTC", "Apr. 19, 12:59:44 UTC"},
-	{"HAST", "Apr. 19, 02:59:44 AM HAST"},
-	{"Apr. 19, 12:59:44 UTC", ""},
-	{"US Naval Observatory", ""},
-	{"AM", ""},
+var tests = []string{
+	"",
+	"DT",
+	"Alaska",
+	"UTC",
+	"HAST",
+	"Apr. 19, 12:59:44 UTC",
+	"US Naval Observatory",
+	"AM",
 }
 
 func generateTimesForTimezone(timezone string, span int) ([]string, error) {
@@ -64,10 +61,10 @@ func generateTimesForTimezone(timezone string, span int) ([]string, error) {
 func TestGetTime(t *testing.T) {
 	span := 10
 
-	for _, test := range tests {
-		actual := GetTime(test.timezone)
+	for _, tz := range tests {
+		actual := GetTime(tz)
 
-		expectedTimes, err := generateTimesForTimezone(test.timezone, span)
+		expectedTimes, err := generateTimesForTimezone(tz, span)
 		if err != nil {
 			t.Fatalf("%s", err)
 			continue
@@ -87,15 +84,15 @@ func TestGetTime(t *testing.T) {
 
 		if !found {
 			expectedList := strings.Join(expectedTimes, ", ")
-			t.Fatalf("GetTime(\"%s\") expected one of %s, got %s", test.timezone, expectedList, actual)
+			t.Fatalf("GetTime(\"%s\") expected one of %s, got %s", tz, expectedList, actual)
 		}
 	}
 }
 
 func BenchmarkGetTime(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		for _, test := range tests {
-			GetTime(test.timezone)
+		for _, tz := range tests {
+			GetTime(tz)
 		}
 	}
 }
