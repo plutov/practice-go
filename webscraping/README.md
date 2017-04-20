@@ -1,6 +1,6 @@
 ### Web Scraping
 
-Create a function that finds the time from this [http://tycho.usno.navy.mil/cgi-bin/timer.pl](URL) and then prints it by extracting the time by timezone code.
+Create a function that finds the time from this [http://tycho.usno.navy.mil/cgi-bin/timer.pl](http://tycho.usno.navy.mil/cgi-bin/timer.pl) and then prints it by extracting the time by timezone code.
 
 ### Examples
 
