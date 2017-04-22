@@ -10,7 +10,7 @@
  - [SOLVED BY [@bediger4000](https://github.com/bediger4000)] buildword
  - [SOLVED BY [@zerkms](https://github.com/zerkms)] shorthash
  - [SOLVED BY [@zerkms](https://github.com/zerkms)] romannumerals
- - [NOT SOLVED] webscraping
+ - [SOLVED BY [@zerkms](https://github.com/zerkms)] webscraping
 
 ### How to solve
 
