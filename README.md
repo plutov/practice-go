@@ -11,6 +11,7 @@
  - [SOLVED BY [@zerkms](https://github.com/zerkms)] shorthash
  - [SOLVED BY [@zerkms](https://github.com/zerkms)] romannumerals
  - [SOLVED BY [@zerkms](https://github.com/zerkms)] webscraping
+ - [NOT SOLVED] lastlettergame
 
 ### How to solve
 
