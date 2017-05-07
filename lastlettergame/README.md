@@ -1,4 +1,4 @@
-### Last Letter, First Letter game
+### First Letter, Last Letter game
 
 There is a game I played a lot in school. The game is called first letter, last letter. The object of this game is for one player to say a word `apple`, and for the other player to say a word that begins with the last letter of the previous word, i.e. `elephant`.
 
