@@ -65,22 +65,22 @@ func (p *pathFinder) setResult(result []string) {
 }
 
 func (p *pathFinder) find(currentIndex int, rest []string) []string {
-	if p.isVisited(currentIndex) {
-		return rest
-	}
-
-	p.enter(currentIndex)
-
 	for _, nextIndex := range p.lookup[currentIndex] {
-		candidate := append(rest, p.dic[nextIndex])
+		if p.isVisited(nextIndex) {
+			continue
+		}
 
+		p.enter(nextIndex)
+
+		candidate := append(rest, p.dic[nextIndex])
 		candidate = p.find(nextIndex, candidate)
+
+		p.exit(nextIndex)
 
 		if len(candidate) > len(p.result) {
 			p.setResult(candidate)
 		}
 	}
-	p.exit(currentIndex)
 
 	return rest
 }
