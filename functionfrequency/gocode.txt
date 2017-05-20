@@ -1,0 +1,32 @@
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	Honda()
+	honda()
+	Honda()
+	fmt.Println("Println")
+	fmt.Println("Honda()")
+	fmt.Println("honda()")
+	kawa()
+}
+
+func Honda() {
+	fmt.Println("CB400")
+	fmt.Printf("CB%s", "600")
+}
+
+func honda() {
+	Honda()
+}
+
+func kawa() {
+	var s []string
+	s = append(s, "Printf()")
+	s = append(s, "Printf()")
+}
+
+func Printf() {}
