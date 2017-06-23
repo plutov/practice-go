@@ -13,6 +13,7 @@
  - [SOLVED BY [@zerkms](https://github.com/zerkms)] webscraping
  - [SOLVED BY [@zerkms](https://github.com/zerkms)] lastlettergame
  - [NOT SOLVED] functionfrequency
+ - [NOT SOLVED] reverseparentheses
 
 ### How to solve
 
