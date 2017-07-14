@@ -12,7 +12,7 @@
  - [SOLVED BY [@zerkms](https://github.com/zerkms)] romannumerals
  - [SOLVED BY [@zerkms](https://github.com/zerkms)] webscraping
  - [SOLVED BY [@zerkms](https://github.com/zerkms)] lastlettergame
- - [NOT SOLVED] functionfrequency
+ - **[NOT SOLVED]** functionfrequency
  - [SOLVED BY [@duckbrain](https://github.com/duckbrain)] reverseparentheses
 
 ### How to solve
