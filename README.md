@@ -1,19 +1,19 @@
-### Go exercises and elegant solutions [![Build Status](https://travis-ci.org/plutov/practice-go.svg?branch=master)](https://travis-ci.org/plutov/practice-go)
+### Go exercises and elegant solutions [![Build Status](https://travis-ci.org/plutov/practice-go.svg?branch=master))(https://travis-ci.org/plutov/practice-go)
 
- - [SOLVED BY [@macocha](https://github.com/macocha)] chess
- - [SOLVED BY [@kennygrant](https://github.com/kennygrant)] floyd
- - [SOLVED BY [@ledongthuc](https://github.com/ledongthuc)] anagram
- - [SOLVED BY [@heliac2000](https://github.com/heliac2000)] jaro
- - [SOLVED BY [@nguyengiabk](https://github.com/nguyengiabk)] mergesort
- - [SOLVED BY [@nguyengiabk](https://github.com/nguyengiabk)] wordladder
- - [SOLVED BY [@EvenPeng](https://github.com/EvenPeng)] sumdecimal
- - [SOLVED BY [@bediger4000](https://github.com/bediger4000)] buildword
- - [SOLVED BY [@zerkms](https://github.com/zerkms)] shorthash
- - [SOLVED BY [@zerkms](https://github.com/zerkms)] romannumerals
- - [SOLVED BY [@zerkms](https://github.com/zerkms)] webscraping
- - [SOLVED BY [@zerkms](https://github.com/zerkms)] lastlettergame
- - **[NOT SOLVED]** functionfrequency
- - [SOLVED BY [@duckbrain](https://github.com/duckbrain)] reverseparentheses
+ - [x] ([@macocha](https://github.com/macocha)) chess
+ - [x] ([@kennygrant](https://github.com/kennygrant)) floyd
+ - [x] ([@ledongthuc](https://github.com/ledongthuc)) anagram
+ - [x] ([@heliac2000](https://github.com/heliac2000)) jaro
+ - [x] ([@nguyengiabk](https://github.com/nguyengiabk)) mergesort
+ - [x] ([@nguyengiabk](https://github.com/nguyengiabk)) wordladder
+ - [x] ([@EvenPeng](https://github.com/EvenPeng)) sumdecimal
+ - [x] ([@bediger4000](https://github.com/bediger4000)) buildword
+ - [x] ([@zerkms](https://github.com/zerkms)) shorthash
+ - [x] ([@zerkms](https://github.com/zerkms)) romannumerals
+ - [x] ([@zerkms](https://github.com/zerkms)) webscraping
+ - [x] ([@zerkms](https://github.com/zerkms)) lastlettergame
+ - [x] ([@duckbrain](https://github.com/duckbrain)) reverseparentheses
+ - [ ] functionfrequency
 
 ### How to solve
 
