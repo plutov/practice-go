@@ -1,19 +1,19 @@
 ### Go exercises and elegant solutions [![Build Status](https://travis-ci.org/plutov/practice-go.svg?branch=master))(https://travis-ci.org/plutov/practice-go)
 
- - [x] ([@macocha](https://github.com/macocha)) chess
- - [x] ([@kennygrant](https://github.com/kennygrant)) floyd
- - [x] ([@ledongthuc](https://github.com/ledongthuc)) anagram
- - [x] ([@heliac2000](https://github.com/heliac2000)) jaro
- - [x] ([@nguyengiabk](https://github.com/nguyengiabk)) mergesort
- - [x] ([@nguyengiabk](https://github.com/nguyengiabk)) wordladder
- - [x] ([@EvenPeng](https://github.com/EvenPeng)) sumdecimal
- - [x] ([@bediger4000](https://github.com/bediger4000)) buildword
- - [x] ([@zerkms](https://github.com/zerkms)) shorthash
- - [x] ([@zerkms](https://github.com/zerkms)) romannumerals
- - [x] ([@zerkms](https://github.com/zerkms)) webscraping
- - [x] ([@zerkms](https://github.com/zerkms)) lastlettergame
- - [x] ([@duckbrain](https://github.com/duckbrain)) reverseparentheses
- - [ ] functionfrequency
+ - [x] ([@macocha](https://github.com/macocha)) [chess](https://github.com/plutov/practice-go/tree/master/chess)
+ - [x] ([@kennygrant](https://github.com/kennygrant)) [floyd](https://github.com/plutov/practice-go/tree/master/floyd)
+ - [x] ([@ledongthuc](https://github.com/ledongthuc)) [anagram](https://github.com/plutov/practice-go/tree/master/anagram)
+ - [x] ([@heliac2000](https://github.com/heliac2000)) [jaro](https://github.com/plutov/practice-go/tree/master/jaro)
+ - [x] ([@nguyengiabk](https://github.com/nguyengiabk)) [mergesort](https://github.com/plutov/practice-go/tree/master/mergesort)
+ - [x] ([@nguyengiabk](https://github.com/nguyengiabk)) [wordladder](https://github.com/plutov/practice-go/tree/master/wordladder)
+ - [x] ([@EvenPeng](https://github.com/EvenPeng)) [sumdecimal](https://github.com/plutov/practice-go/tree/master/sumdecimal)
+ - [x] ([@bediger4000](https://github.com/bediger4000)) [buildword](https://github.com/plutov/practice-go/tree/master/buildword)
+ - [x] ([@zerkms](https://github.com/zerkms)) [shorthash](https://github.com/plutov/practice-go/tree/master/shorthash)
+ - [x] ([@zerkms](https://github.com/zerkms)) [romannumerals](https://github.com/plutov/practice-go/tree/master/romannumerals)
+ - [x] ([@zerkms](https://github.com/zerkms)) [webscraping](https://github.com/plutov/practice-go/tree/master/webscraping)
+ - [x] ([@zerkms](https://github.com/zerkms)) [lastlettergame](https://github.com/plutov/practice-go/tree/master/lastlettergame)
+ - [x] ([@duckbrain](https://github.com/duckbrain)) [reverseparentheses](https://github.com/plutov/practice-go/tree/master/reverseparentheses)
+ - [x] ([@kennygrant](https://github.com/kennygrant)) [functionfrequency](https://github.com/plutov/practice-go/tree/master/functionfrequency)
 
 ### How to solve
 
