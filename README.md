@@ -1,4 +1,4 @@
-### Go exercises and elegant solutions [![Build Status](https://travis-ci.org/plutov/practice-go.svg?branch=master))(https://travis-ci.org/plutov/practice-go)
+### Go exercises and elegant solutions [![Build Status](https://travis-ci.org/plutov/practice-go.svg?branch=master)](https://travis-ci.org/plutov/practice-go)
 
  - [x] ([@macocha](https://github.com/macocha)) [chess](https://github.com/plutov/practice-go/tree/master/chess)
  - [x] ([@kennygrant](https://github.com/kennygrant)) [floyd](https://github.com/plutov/practice-go/tree/master/floyd)
