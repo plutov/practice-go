@@ -4,11 +4,17 @@ Let `Piles(n int)` represent the number of different ways in which `n` coins can
 
 ```
 OOOOO
+
 OOOO O
+
 OOO OO
+
 OOO O O
+
 OO OO O
+
 OO O O O
+
 O O O O O
 ```
 
