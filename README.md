@@ -15,6 +15,7 @@
  - [x] ([@duckbrain](https://github.com/duckbrain)) [reverseparentheses](https://github.com/plutov/practice-go/tree/master/reverseparentheses)
  - [x] ([@kennygrant](https://github.com/kennygrant)) [functionfrequency](https://github.com/plutov/practice-go/tree/master/functionfrequency)
  - [ ] [coins](https://github.com/plutov/practice-go/tree/master/coins)
+ - [ ] [secretmessage](https://github.com/plutov/practice-go/tree/master/secretmessage)
 
 ### How to solve
 
@@ -22,6 +23,14 @@
  - Code this function in the separate .go file inside a package and run tests. You may use anything you want except 3rd-party packages.
  - Create a PR with one .go file.
  - We will choose the most fast and elegant solution and merge into the repo within 7 days.
+
+### Run tests with benchmarks
+
+Run it in the challenge folder:
+
+```
+go test -bench=.
+```
 
 ### How to create new challenge from template
 
