@@ -7,15 +7,15 @@ var (
 	decoded = "implored"
 )
 
-func TestEncode(t *testing.T) {
-	actual := Encode(encoded)
+func TestDecode(t *testing.T) {
+	actual := Decode(encoded)
 	if actual != decoded {
 		t.Fatalf("Expected %s, got %s", decoded, actual)
 	}
 }
 
-func BenchmarkEncode(b *testing.B) {
+func BenchmarkDecode(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		Encode(encoded)
+		Decode(encoded)
 	}
 }

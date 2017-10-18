@@ -1,6 +1,6 @@
 package secretmessage
 
-// Encode func
-func Encode(encoded string) string {
+// Decode func
+func Decode(encoded string) string {
 	return ""
 }
