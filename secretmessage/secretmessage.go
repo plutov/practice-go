@@ -31,10 +31,10 @@ func Encode(e string) string {
 		or[i] = totals[i].R
 	}
 
-	if s, idx := string(or), strings.Index(s, "_"); idx != -1 {
+	s := string(or)
+	if idx := strings.Index(s, "_"); idx != -1 {
 		s = s[:idx]
-	} else {
-
-		return s
 	}
+
+	return s
 }
