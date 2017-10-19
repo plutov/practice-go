@@ -8,6 +8,11 @@ var (
 )
 
 func TestEncode(t *testing.T) {
+	res := Encode("b_bcb_")
+	if res != "b" {
+		t.Fatalf("Expected %s, got %s", "b", res)
+	}
+
 	actual := Encode(encoded)
 	if actual != decoded {
 		t.Fatalf("Expected %s, got %s", decoded, actual)
