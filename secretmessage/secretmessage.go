@@ -1,5 +1,7 @@
 package secretmessage
 
+import "sort"
+
 // Decode func
 func Decode(encoded string) string {
 	// count
