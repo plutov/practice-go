@@ -19,3 +19,17 @@ func BenchmarkDecode(b *testing.B) {
 		Decode(encoded)
 	}
 }
+
+func TestDecodeSimple(t *testing.T) {
+	actual := Decode("b_bcb_")
+	if actual != "b" {
+		t.Fatalf("Expected %s, got %s", "b", actual)
+	}
+}
+
+func TestDecodeSimpleMultibyteUnicode(t *testing.T) {
+	actual := Decode("Ƃ_ƂcƂ_")
+	if actual != "Ƃ" {
+		t.Fatalf("Expected %s, got %s", "Ƃ", actual)
+	}
+}
