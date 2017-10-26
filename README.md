@@ -15,7 +15,7 @@
  - [x] ([@duckbrain](https://github.com/duckbrain)) [reverseparentheses](https://github.com/plutov/practice-go/tree/master/reverseparentheses)
  - [x] ([@kennygrant](https://github.com/kennygrant)) [functionfrequency](https://github.com/plutov/practice-go/tree/master/functionfrequency)
  - [ ] [coins](https://github.com/plutov/practice-go/tree/master/coins)
- - [ ] [secretmessage](https://github.com/plutov/practice-go/tree/master/secretmessage)
+ - [x] [@marz619](https://github.com/marz619) [secretmessage](https://github.com/plutov/practice-go/tree/master/secretmessage)
 
 ### How to solve
 
