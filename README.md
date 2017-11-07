@@ -16,6 +16,7 @@
  - [x] ([@kennygrant](https://github.com/kennygrant)) [functionfrequency](https://github.com/plutov/practice-go/tree/master/functionfrequency)
  - [x] ([@marz619](https://github.com/marz619)) [coins](https://github.com/plutov/practice-go/tree/master/coins)
  - [x] ([@marz619](https://github.com/marz619)) [secretmessage](https://github.com/plutov/practice-go/tree/master/secretmessage)
+ - [] [missingnumbers](https://github.com/plutov/practice-go/tree/master/missingnumbers)
 
 ### How to solve
 
