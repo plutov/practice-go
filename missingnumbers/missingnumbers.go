@@ -5,13 +5,13 @@ package missingnumbers
 // Store each value as a bit in an array
 // of 64 bit "words". Then find all words which
 // hasn't all bits set. And in that word find the missing bits.
-// I cheat a bit because the last word should be treated differently
-// But it works now then I know two bits are unset.
 
 // How big is a word (64 since I use uint64)
 const wordSize = 64
 // a 64-bit number with all bits set
 const wordAllSet = 0xffffffffffffffff
+// Mask to use instead of modulo wordSize
+const moduloMask = 63
 
 // An array of all single bit set numbers
 var wordBits = calcWordBits()
@@ -39,7 +39,7 @@ type bitArray struct {
 func newBitArray(len int) bitArray {
 	nWords := len / wordSize
 	// @TODO use mask instead
-	if len % wordSize != 0 {
+	if len & moduloMask != 0 {
 		nWords++
 	}
 	words := make([]uint64, nWords, nWords)
@@ -49,7 +49,7 @@ func newBitArray(len int) bitArray {
 func (b *bitArray) setBit(n int) {
 	index := n / wordSize
 	// @TODO use mask instead
-	bit := uint64(1) << uint(n % wordSize)
+	bit := uint64(1) << uint(n & moduloMask)
 	b.words[index] |= bit
 }
 
@@ -82,3 +82,4 @@ func Missing(numbers []int) []int {
 	}
 	return bits.findUnsetBits(2)
 }
+
