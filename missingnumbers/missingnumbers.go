@@ -5,6 +5,7 @@ package missingnumbers
 // Store each value as a bit in an array
 // of 64 bit "words". Then find all words which
 // hasn't all bits set. And in that word find the missing bits.
+// So bit 66 is stored in word 1 bit 2
 
 // How big is a word (64 since I use uint64)
 const wordSize = 64
@@ -13,32 +14,14 @@ const wordAllSet = 0xffffffffffffffff
 // Mask to use instead of modulo wordSize
 const moduloMask = 63
 
-// An array of all single bit set numbers
-var wordBits = calcWordBits()
-
-// Calculate an array of bits 1, 2, 4 and so on
-// Used to and with word to see if a bit is set
-func calcWordBits() [wordSize]uint64 {
-	wordBits := [wordSize]uint64{}
-	i := uint(0)
-	for i < wordSize {
-		wordBits[i] = 1 << i
-		i++
-	}
-	return wordBits
-}
-
-
 type bitArray struct {
 	len int // Total number of bits
 	nWords int // THe number of words used
 	words []uint64
-
 }
 
 func newBitArray(len int) bitArray {
 	nWords := len / wordSize
-	// @TODO use mask instead
 	if len & moduloMask != 0 {
 		nWords++
 	}
@@ -48,31 +31,28 @@ func newBitArray(len int) bitArray {
 
 func (b *bitArray) setBit(n int) {
 	index := n / wordSize
-	// @TODO use mask instead
 	bit := uint64(1) << uint(n & moduloMask)
 	b.words[index] |= bit
 }
-
 
 func (b *bitArray) findUnsetBits(maxCount int) []int {
 	unset := make([]int, 0, maxCount)
 	for i, word := range b.words {
 		if word & wordAllSet != wordAllSet {
-			for j, wordBit := range wordBits {
-				if word & wordBit == 0 {
+			j := 0
+			for j < wordSize {
+				if word & (uint64(1) << uint(j)) == 0 {
 					unset = append(unset, i * wordSize + j)
 					if len(unset) == maxCount {
 						return unset
 					}
 				}
+				j++
 			}
 		}
 	}
 	return unset
 }
-
-
-
 
 func Missing(numbers []int) []int {
 	bits := newBitArray(len(numbers) + 3) // 0 and 2 missing numbers
