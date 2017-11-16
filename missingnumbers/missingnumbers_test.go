@@ -1,6 +1,7 @@
 package missingnumbers
 
 import (
+	"math/rand"
 	"reflect"
 	"testing"
 )
@@ -40,5 +41,75 @@ func BenchmarkMissing(b *testing.B) {
 		for _, test := range tests {
 			Missing(test.input)
 		}
+	}
+}
+
+func TestMissingFuzzy(t *testing.T) {
+
+	expected := make([]int, 2)
+
+	for i := 0; i < 10; i++ {
+
+		n := 10000
+		numbers := rand.Perm(n)
+		for i := range numbers {
+			numbers[i]++
+		}
+
+		x1 := rand.Intn(n)
+		x2 := rand.Intn(n - 1)
+
+		expected[0] = numbers[x1]
+		numbers = append(numbers[:x1], numbers[x1+1:]...)
+		expected[1] = numbers[x2]
+		numbers = append(numbers[:x2], numbers[x2+1:]...)
+		if expected[0] > expected[1] {
+			expected[0], expected[1] = expected[1], expected[0]
+		}
+
+		actual := Missing(numbers)
+
+		if !reflect.DeepEqual(expected, actual) {
+			t.Errorf("test %d: expected %v was %v", i, expected, actual)
+		}
+	}
+}
+
+func BenchmarkMissingFuzzy_1e2(b *testing.B) {
+	benchmarkMissingFuzzy(b, 1e2)
+}
+
+func BenchmarkMissingFuzzy_1e3(b *testing.B) {
+	benchmarkMissingFuzzy(b, 1e3)
+}
+
+func BenchmarkMissingFuzzy_1e4(b *testing.B) {
+	benchmarkMissingFuzzy(b, 1e4)
+}
+
+func BenchmarkMissingFuzzy_1e5(b *testing.B) {
+	benchmarkMissingFuzzy(b, 1e5)
+}
+
+func BenchmarkMissingFuzzy_1e6(b *testing.B) {
+	benchmarkMissingFuzzy(b, 1e6)
+}
+
+func benchmarkMissingFuzzy(b *testing.B, n int) {
+
+	for i := 0; i < b.N; i++ {
+
+		b.StopTimer()
+		numbers := rand.Perm(n)
+		for i := range numbers {
+			numbers[i]++
+		}
+		x1 := rand.Intn(n)
+		x2 := rand.Intn(n - 1)
+		numbers = append(numbers[:x1], numbers[x1+1:]...)
+		numbers = append(numbers[:x2], numbers[x2+1:]...)
+		b.StartTimer()
+
+		_ = Missing(numbers)
 	}
 }
