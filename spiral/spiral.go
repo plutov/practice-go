@@ -5,8 +5,14 @@ import (
 	"strconv"
 )
 
+/*
+returns the element at position x,y in the spiral of size n
+y: line number between 0 and n-1
+x: column number between 0 and n-1
+*/
 func element(n, x, y int) int {
 	/*
+	y: number of line [0 .. n-1]
 	   The recursive structure of an even spiral:
 
 	   +-----------------------------+
@@ -45,19 +51,19 @@ func element(n, x, y int) int {
 	sqr := n * n
 	// even
 	if n%2 == 0 {
-		if y == 0 { // top line
-			return sqr - x - 1
+		if y == 0 { // top line: counted down with x from sqr - 1
+			return sqr - 1 - x 
 		}
-		if x == n-1 { // right column
+		if x == n-1 { // right column: counted down with y from sqr - n
 			return sqr - n - y
 		}
 		return element(n-1, x, y-1) // recursion to odd subspiral
 	}
 	// odd
-	if y == n-1 { // bottom line
+	if y == n-1 { // bottom line: counted up with x from sqr - n
 		return sqr - n + x
 	}
-	if x == 0 { // left column
+	if x == 0 { // left column: counted up with y from sqr - n - (n - 1)
 		return sqr - n - (n - 1) + y
 	}
 	return element(n-1, x-1, y) // recursion to even subspiral
