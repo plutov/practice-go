@@ -37,32 +37,24 @@ func element(n, x, y int) int {
 	   +-----------------------------+
 	*/
 	//
-	// case analysis
-	//
-	evenSpiral := n%2 == 0
-	inTopLine := y == 0
-	inBottomLine := y == n-1
-	inRightCol := x == n-1
-	inLeftCol := x == 0
-	//
 	// Due to recursion we only have to bother with numbers along the edges.
 	//
 	sqr := n * n
 	// even
-	if evenSpiral {
-		if inTopLine {
+	if n%2 == 0 {
+		if y == 0 { // top line
 			return sqr - x - 1
 		}
-		if inRightCol {
+		if x == n-1 { // right column
 			return sqr - n - y
 		}
 		return element(n-1, x, y-1) // recursion to odd subspiral
 	}
 	// odd
-	if inBottomLine {
+	if y == n-1 { // bottom line
 		return sqr - n + x
 	}
-	if inLeftCol {
+	if x == 0 { // left column
 		return sqr - n - (n - 1) + y
 	}
 	return element(n-1, x-1, y) // recursion to even subspiral
