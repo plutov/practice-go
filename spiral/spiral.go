@@ -62,9 +62,11 @@ func element(n, x, y int) int {
 
 
 func Spiral(n int) {
+	str := strconv.Itoa(n * n)
+	length := len(str) + 1
 	for y := 0; y < n; y++ {
 		for x := 0; x < n; x++ {
-			fmt.Printf("%3v", element(n, x, y))
+			fmt.Printf("%[2]*[1]v", element(n, x, y), length)
 		}
 		fmt.Println()
 	}
