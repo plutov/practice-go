@@ -17,7 +17,7 @@
  - [x] ([@marz619](https://github.com/marz619)) [coins](https://github.com/plutov/practice-go/tree/master/coins)
  - [x] ([@marz619](https://github.com/marz619)) [secretmessage](https://github.com/plutov/practice-go/tree/master/secretmessage)
  - [x] ([@shogg](https://github.com/shogg)) [missingnumbers](https://github.com/plutov/practice-go/tree/master/missingnumbers)
- - [ ] [spiral](https://github.com/plutov/practice-go/tree/master/spiral)
+ - [x] ([@HDudzus](https://github.com/HDudzus)) [spiral](https://github.com/plutov/practice-go/tree/master/spiral)
 
 ### How to solve
 
