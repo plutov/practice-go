@@ -18,6 +18,7 @@
  - [x] ([@marz619](https://github.com/marz619)) [secretmessage](https://github.com/plutov/practice-go/tree/master/secretmessage)
  - [x] ([@shogg](https://github.com/shogg)) [missingnumbers](https://github.com/plutov/practice-go/tree/master/missingnumbers)
  - [x] ([@HDudzus](https://github.com/HDudzus)) [spiral](https://github.com/plutov/practice-go/tree/master/spiral)
+- [ ] [mosaicphoto](https://github.com/plutov/practice-go/tree/master/mosaicphoto)
 
 ### How to solve
 
