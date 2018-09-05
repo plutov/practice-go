@@ -10,7 +10,6 @@
  - [x] ([@bediger4000](https://github.com/bediger4000)) [buildword](https://github.com/plutov/practice-go/tree/master/buildword)
  - [x] ([@zerkms](https://github.com/zerkms)) [shorthash](https://github.com/plutov/practice-go/tree/master/shorthash)
  - [x] ([@zerkms](https://github.com/zerkms)) [romannumerals](https://github.com/plutov/practice-go/tree/master/romannumerals)
- - [x] ([@zerkms](https://github.com/zerkms)) [webscraping](https://github.com/plutov/practice-go/tree/master/webscraping)
  - [x] ([@zerkms](https://github.com/zerkms)) [lastlettergame](https://github.com/plutov/practice-go/tree/master/lastlettergame)
  - [x] ([@duckbrain](https://github.com/duckbrain)) [reverseparentheses](https://github.com/plutov/practice-go/tree/master/reverseparentheses)
  - [x] ([@kennygrant](https://github.com/kennygrant)) [functionfrequency](https://github.com/plutov/practice-go/tree/master/functionfrequency)
