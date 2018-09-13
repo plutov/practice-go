@@ -20,8 +20,7 @@ func TestOverlaidTriangles(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			got := OverlaidTriangles(tt.n, tt.m)
 			if got != tt.want {
-				// TODO: uncomment after implementation
-				//t.Errorf("OverlaidTriangles(%d, %d) got %d, want %d", tt.n, tt.m, got, tt.want)
+				t.Errorf("OverlaidTriangles(%d, %d) got %d, want %d", tt.n, tt.m, got, tt.want)
 			}
 		})
 	}
