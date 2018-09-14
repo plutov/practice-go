@@ -29,7 +29,7 @@
  - [x] ([@shogg](https://github.com/shogg)) [missingnumbers](https://github.com/plutov/practice-go/tree/master/missingnumbers)
  - [x] ([@HDudzus](https://github.com/HDudzus)) [spiral](https://github.com/plutov/practice-go/tree/master/spiral)
 - [x] ([@TomLefley](https://github.com/TomLefley)) [warriors](https://github.com/plutov/practice-go/tree/master/warriors)
-- [ ] (not solved) [snowflakes](https://github.com/plutov/practice-go/tree/master/snowflakes)
+ - [x] ([@shogg](https://github.com/shogg)) [snowflakes](https://github.com/plutov/practice-go/tree/master/snowflakes)
 
 ### Run tests with benchmarks
 
