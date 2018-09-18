@@ -4,7 +4,7 @@
 
  - Each folder has a README.md file and `*_test.go` file, check it and find what kind of function you need to implement.
  - You may use anything you want except 3rd-party packages.
- - Implement the function and uncomment line with `t.Errorf()` in `*_test.go` file.
+ - Implement the function.
  - Run tests and benchmarks.
  - Create a PR to `master` branch and answer questions from PR template.
  - We will choose the most fast and elegant solution and merge into the repo within 7 days.
@@ -28,8 +28,9 @@
  - [x] ([@marz619](https://github.com/marz619)) [secretmessage](https://github.com/plutov/practice-go/tree/master/secretmessage)
  - [x] ([@shogg](https://github.com/shogg)) [missingnumbers](https://github.com/plutov/practice-go/tree/master/missingnumbers)
  - [x] ([@HDudzus](https://github.com/HDudzus)) [spiral](https://github.com/plutov/practice-go/tree/master/spiral)
-- [x] ([@TomLefley](https://github.com/TomLefley)) [warriors](https://github.com/plutov/practice-go/tree/master/warriors)
+ - [x] ([@TomLefley](https://github.com/TomLefley)) [warriors](https://github.com/plutov/practice-go/tree/master/warriors)
  - [x] ([@shogg](https://github.com/shogg)) [snowflakes](https://github.com/plutov/practice-go/tree/master/snowflakes)
+ - [ ] (not solved) [brokennode](https://github.com/plutov/practice-go/tree/master/brokennode)
 
 ### Run tests with benchmarks
 
