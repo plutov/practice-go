@@ -32,7 +32,7 @@ func TestFindBrokenNodes(t *testing.T) {
 	}
 }
 
-func BenchmarkOverlaidTriangles(b *testing.B) {
+func BenchmarkFindBrokenNodes(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		FindBrokenNodes(tests[0].brokenNodes, tests[0].reports)
 	}

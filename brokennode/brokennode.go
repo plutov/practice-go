@@ -31,7 +31,7 @@ const (
 	W uint64 = 0
 )
 
-// merge a node configuration into results.
+// merge into results.
 func merge(result []byte, conf uint64) {
 
 	chr := func(c uint64) byte {
@@ -52,7 +52,7 @@ func merge(result []byte, conf uint64) {
 	}
 }
 
-// check consistence of a node configuration with reports.
+// check consistence with reports.
 func check(conf uint64, reports []bool) bool {
 
 	// copy first node behind last
@@ -78,7 +78,7 @@ func check(conf uint64, reports []bool) bool {
 	return true
 }
 
-// nextPerm computes a new node configuration.
+// nextPerm next node configuration.
 // https://graphics.stanford.edu/~seander/bithacks.html#NextBitPermutation
 func nextPerm(v uint64) uint64 {
 	t := v | (v - 1) + 1
