@@ -1,22 +1,27 @@
 package brokennode
 
+import (
+	"math/bits"
+)
+
 func FindBrokenNodes(brokenNodes int, reports []bool) string {
 
 	result := make([]byte, len(reports))
 
-	var conf uint64 = 1<<uint64(brokenNodes) - 1
-	var n uint64 = 1 << uint64(len(reports))
+	// start-conf: broken nodes come first
+	var conf uint64 = 1<<uint8(brokenNodes) - 1
+	var max uint64 = 1 << uint8(len(reports))
 
 out:
 	for {
 		for !check(conf, reports) {
-			if conf = nextPerm(conf); conf >= n {
+			if conf = nextPerm(conf); conf >= max {
 				break out
 			}
 		}
 
 		merge(result, conf)
-		if conf = nextPerm(conf); conf >= n {
+		if conf = nextPerm(conf); conf >= max {
 			break
 		}
 	}
@@ -52,11 +57,11 @@ func merge(result []byte, conf uint64) {
 	}
 }
 
-// check consistence with reports.
+// check consistency with reports.
 func check(conf uint64, reports []bool) bool {
 
-	// copy first node behind last
-	c := conf | (conf&1)<<uint64(len(reports))
+	// duplicate first node behind last
+	c := conf | ((conf & 1) << uint8(len(reports)))
 
 	for i := range reports {
 		if c&1 == B {
@@ -81,6 +86,6 @@ func check(conf uint64, reports []bool) bool {
 // nextPerm next node configuration.
 // https://graphics.stanford.edu/~seander/bithacks.html#NextBitPermutation
 func nextPerm(v uint64) uint64 {
-	t := v | (v - 1) + 1
-	return t | ((t&-t)/(v&-v)>>1 - 1)
+	t := v | (v - 1)
+	return (t + 1) | ((^t&-^t - 1) >> (uint8(bits.TrailingZeros64(v)) + 1))
 }
