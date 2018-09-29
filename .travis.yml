@@ -5,3 +5,5 @@ go:
 
 script:
   - go test -v ./...
+after_success:
+  - bash .travis/benchmark-pr.sh
