@@ -3,21 +3,20 @@ package brokennode
 func FindBrokenNodes(brokenNodes int, reports []bool) string {
 
 	result := make([]byte, len(reports))
-	conf := make([]byte, len(reports))
-	for i := range reports {
-		conf[i] = 'B'
-	}
+
+	var conf uint64 = 1<<uint64(brokenNodes) - 1
+	var n uint64 = 1 << uint64(len(reports))
 
 out:
 	for {
-		for !check(conf, brokenNodes, reports) {
-			if !next(conf) {
+		for !check(conf, reports) {
+			if conf = nextPerm(conf); conf >= n {
 				break out
 			}
 		}
 
 		merge(result, conf)
-		if !next(conf) {
+		if conf = nextPerm(conf); conf >= n {
 			break
 		}
 	}
@@ -25,54 +24,63 @@ out:
 	return string(result)
 }
 
-func merge(a, b []byte) {
-	for i := range a {
-		switch {
-		case a[i] == 0:
-			a[i] = b[i]
-		case a[i] != b[i]:
-			a[i] = '?'
+const (
+	// B broken
+	B uint64 = 1
+	// W working
+	W uint64 = 0
+)
+
+// merge a node configuration into results.
+func merge(result []byte, conf uint64) {
+
+	chr := func(c uint64) byte {
+		if c&1 == B {
+			return 'B'
 		}
+		return 'W'
+	}
+
+	for i := range result {
+		switch {
+		case result[i] == 0:
+			result[i] = chr(conf)
+		case result[i] != chr(conf):
+			result[i] = '?'
+		}
+		conf >>= 1
 	}
 }
 
-func check(conf []byte, brokenNodes int, reports []bool) bool {
+// check consistence of a node configuration with reports.
+func check(conf uint64, reports []bool) bool {
 
-	// broken count
-	broken := 0
-	for i := range conf {
-		if conf[i] == 'B' {
-			broken++
-		}
-	}
-	if broken != brokenNodes {
-		return false
-	}
+	// copy first node behind last
+	c := conf | (conf&1)<<uint64(len(reports))
 
-	// consistence with reports
-	n := len(conf)
-	for i := range conf {
-		if conf[i] == 'B' {
+	for i := range reports {
+		if c&1 == B {
+			c >>= 1
 			continue
 		}
-		var want byte = 'B'
+
+		want := B
 		if reports[i] {
-			want = 'W'
+			want = W
 		}
-		if conf[(i+1)%n] != want {
+
+		c >>= 1
+		if c&1 != want {
 			return false
 		}
 	}
+
 	return true
 }
 
-func next(conf []byte) bool {
-	for i := 0; i < len(conf); i++ {
-		if conf[i] == 'B' {
-			conf[i] = 'W'
-			return true
-		}
-		conf[i] = 'B'
-	}
-	return false
+// nextPerm computes a new node configuration.
+// https://graphics.stanford.edu/~seander/bithacks.html#NextBitPermutation
+func nextPerm(v uint64) uint64 {
+	t := v | (v - 1) + 1
+	return t | ((t&-t)/(v&-v)>>1 - 1)
 }
