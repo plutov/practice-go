@@ -47,3 +47,15 @@ In both cases, the 0th node is definitely broken, but we're not sure about the o
 ```
 go test -bench .
 ```
+
+### Submitted solutions
+
+shogg [solution](https://github.com/plutov/practice-go/blob/e92e4a814ab3d55ad9ab57392d942e50164f0384/brokennode/brokennode.go)
+```
+goos: linux
+goarch: amd64
+pkg: github.com/plutov/practice-go/brokennode
+BenchmarkFindBrokenNodes-2   	20000000	        93.4 ns/op	       6 B/op	       2 allocs/op
+PASS
+ok  	github.com/plutov/practice-go/brokennode	1.979s
+```
