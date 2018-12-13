@@ -6,7 +6,7 @@ One of the most popular websites at NASA is the [Astronomy Picture of the Day](h
 curl https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=2018-12-13
 ```
 
-Using this API and Go build the smallest possible square collage. Or return an error if there is no possible combination between all dates.
+Using this API and Go build the smallest possible rectangular collage. Or return an error if there is no possible combination between all dates.
 
 Rules:
 
