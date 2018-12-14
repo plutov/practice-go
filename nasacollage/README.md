@@ -10,8 +10,9 @@ Using this API and Go build the smallest possible rectangular collage. Or return
 
 Rules:
 
+- You should use original photos, resizing and cutting is not allowed.
 - One photo can't be used more than once on the collage.
-- It should be more than one photo on the collage.
+- It should be more than 4 photos on the collage.
 
 Note: you may hit the rate limit (1000 requests per hour).
 
