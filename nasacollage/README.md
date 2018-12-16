@@ -10,8 +10,6 @@ Rules:
 - One photo can't be used more than once on the collage.
 - It should be more than 10 photos on the collage.
 
-Note: you may hit the rate limit (1000 requests per hour).
-
 Submit PR with code and photo file `collage.png`.
 
 ### Prize
