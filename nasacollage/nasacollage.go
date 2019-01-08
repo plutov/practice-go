@@ -90,9 +90,10 @@ func solve() {
 	}
 
 	progress := func(current, max int) {
-		log.Printf("10^%.2f: 10^%.2f\n",
+		log.Printf("10^%.4f: 10^%.4f (%.8f %%)\n",
 			math.Log10(float64(max)),
-			math.Log10(float64(current)))
+			math.Log10(float64(current)),
+			float64(current*100)/float64(max))
 	}
 
 	collage.NewSolver(resData, progress).Solve(groundRowSize)
