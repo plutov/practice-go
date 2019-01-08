@@ -3,12 +3,18 @@ package collage_test
 import (
 	"fmt"
 	"math"
+	"os"
 	"testing"
 
 	"github.com/shogg/practice-go/nasacollage/collage"
 )
 
 func TestSolve(t *testing.T) {
+
+	// skip if travis
+	if _, ok := os.LookupEnv("TRAVIS"); ok {
+		t.Skip("travis build")
+	}
 
 	resData, err := collage.ListDir("../../../tmp/apod")
 	if err != nil {
