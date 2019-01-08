@@ -49,13 +49,13 @@ DESCRIPTION
 	3. delete logos and non-image files (for instance *.svf)
 
 	4. Generate collages (execution will take years
-		to come to an end, interrupt after a couple of minutes)
+		to come to an end, interrupt sometime)
 
-		$ mddir ../collages; cd ../collages
-		$ nasacolage solve ../images 1
-		$ nasacolage solve ../images 2
-		$ nasacolage solve ../images 3
-		$ nasacolage solve ../images 4`)
+		$ mkdir ../collages; cd ../collages
+		$ nasacollage solve ../images 1
+		$ nasacollage solve ../images 2
+		$ nasacollage solve ../images 3
+		$ nasacollage solve ../images 4`)
 }
 
 func scrape() {
