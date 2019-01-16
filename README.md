@@ -31,7 +31,7 @@
  - [x] ([@TomLefley](https://github.com/TomLefley)) [warriors](https://github.com/plutov/practice-go/tree/master/warriors)
  - [x] ([@shogg](https://github.com/shogg)) [snowflakes](https://github.com/plutov/practice-go/tree/master/snowflakes)
  - [x] ([@shogg](https://github.com/shogg)) [brokennode](https://github.com/plutov/practice-go/tree/master/brokennode)
- - [ ] (not solved) [nasacollage](https://github.com/plutov/practice-go/tree/master/nasacollage)
+ - [x] ([@shogg](https://github.com/shogg)) [nasacollage](https://github.com/plutov/practice-go/tree/master/nasacollage)
 
 ### Run tests with benchmarks
 
