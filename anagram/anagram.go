@@ -2,50 +2,47 @@ package anagram
 
 import "strings"
 
-func FindAnagrams(dictionary []string, word string) (result []string) {
-	word = normalize(word)
-	if len(word) == 0 {
-		return nil
-	}
-
-	charDir := parseCharDic(word)
-	for _, value := range dictionary {
-		ww := normalize(value)
-		// ignore exact match or empty word(not anagram)
-		if ww == word || len(ww) == 0 {
+func isSubset(s, S string) bool {
+	used := make([]bool, len(S))
+OuterLoop:
+	for _, r := range s {
+		if r == ' ' {
 			continue
 		}
-
-		if compareDics(charDir, parseCharDic(ww)) {
-			result = append(result, value)
+		for i, R := range S {
+			if !used[i] && r == R {
+				used[i] = true
+				continue OuterLoop
+			}
 		}
-	}
-	return result
-}
-
-func normalize(s string) string {
-	return strings.Replace(strings.ToLower(s), " ", "", -1)
-}
-
-func parseCharDic(word string) (result map[rune]int) {
-	result = make(map[rune]int)
-	for _, char := range word {
-		result[char] = result[char] + 1
-	}
-
-	return result
-}
-
-func compareDics(dic1, dic2 map[rune]int) bool {
-	if len(dic1) != len(dic2) {
 		return false
 	}
+	return true
+}
 
-	for key, value := range dic1 {
-		if dic2[key] != value {
-			return false
+func nonEmpty(s string) bool {
+	for _, r := range s {
+		if r != ' ' {
+			return true
 		}
 	}
+	return false
+}
 
-	return true
+func isAnagram(s1, s2 string) bool {
+	s1 = strings.ToLower(s1)
+	s2 = strings.ToLower(s2)
+	return s1 != s2 && nonEmpty(s1) && nonEmpty(s2) && isSubset(s1, s2) && isSubset(s2, s1)
+}
+
+// FindAnagrams returns all the anagrams of `word` in dictionary
+func FindAnagrams(dictionary []string, word string) []string {
+	// assumes that words are short
+	result := make([]string, 0)
+	for _, w := range dictionary {
+		if isAnagram(word, w) {
+			result = append(result, w)
+		}
+	}
+	return result
 }
