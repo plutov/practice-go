@@ -16,9 +16,9 @@ If node is not found in the graph, the `Degree` func should return an error.
 
 ```
 nodes := 3
-graph := [][]int{
-    []int{1, 2},
-    []int{1, 3},
+graph := [][2]int{
+    {1, 2},
+    {1, 3},
 }
 Degree(nodes, graph, 1) // 2, err=nil
 Degree(nodes, graph, 2) // 1, err=nil
