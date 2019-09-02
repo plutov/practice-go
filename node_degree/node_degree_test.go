@@ -107,3 +107,80 @@ func BenchmarkDegree(b *testing.B) {
 		Degree(16, bigGraph, 6)
 	}
 }
+
+func TestDegreeBig(t *testing.T) {
+
+	tests := []struct {
+		degree func(int, [][2]int, int) (int, error)
+	}{
+		{DegreeLinear},
+		{DegreeLinearCopy},
+		{DegreeLinearReverse},
+		{DegreeStepReverse},
+		{DegreeInterpol},
+	}
+
+	for i, test := range tests {
+		degree, err := test.degree(16, bigGraph, 6)
+		if err != nil {
+			t.Error(err)
+		}
+		if degree != 10 {
+			t.Errorf("%d: degree 10 expected, was %d", i, degree)
+		}
+	}
+}
+
+func BenchmarkBig(b *testing.B) {
+	b.Run("Linear", bench(DegreeLinear, 16, bigGraph, 6))
+	b.Run("LinearCopy", bench(DegreeLinearCopy, 16, bigGraph, 6))
+	b.Run("LinearReverse", bench(DegreeLinearReverse, 16, bigGraph, 6))
+	b.Run("StepReverse", bench(DegreeStepReverse, 16, bigGraph, 6))
+	b.Run("Interpol", bench(DegreeInterpol, 16, bigGraph, 6))
+}
+
+func BenchmarkHuge(b *testing.B) {
+	initHugeGraph()
+
+	b.Run("Linear", bench(DegreeLinear, N, hugeGraph, int(N*P)))
+	b.Run("LinearCopy", bench(DegreeLinearCopy, N, hugeGraph, int(N*P)))
+	b.Run("LinearReverse", bench(DegreeLinearReverse, N, hugeGraph, int(N*P)))
+	b.Run("StepReverse", bench(DegreeStepReverse, N, hugeGraph, int(N*P)))
+	b.Run("Interpol", bench(DegreeInterpol, N, hugeGraph, int(N*P)))
+}
+
+func bench(
+	degreeImpl func(int, [][2]int, int) (int, error),
+	nodes int, graph [][2]int, node int) func(*testing.B) {
+
+	return func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			degreeImpl(nodes, graph, node)
+		}
+	}
+}
+
+const (
+	N = 100000
+	P = .5
+)
+
+var hugeGraph [][2]int
+
+func initHugeGraph() {
+
+	if len(hugeGraph) > 0 {
+		return
+	}
+
+	s := 0
+	sparce := 100
+	for j := 2; j <= N; j++ {
+		for i := 1; i < j; i++ {
+			if s%sparce == 0 {
+				hugeGraph = append(hugeGraph, [2]int{i, j})
+			}
+			s++
+		}
+	}
+}
