@@ -85,6 +85,9 @@ func DegreeStepReverse(nodes int, graph [][2]int, node int) (int, error) {
 	last := graph[lenGraph-1][1]
 
 	step := lenGraph / last
+	if step == 0 {
+		step = 1
+	}
 
 	degree := 0
 
@@ -106,11 +109,15 @@ func DegreeStepReverse(nodes int, graph [][2]int, node int) (int, error) {
 		next--
 	}
 
+	if i < 0 {
+		return degree, nil
+	}
+
 	i, _ = adjust(i, 0, graph, node)
-	for j := i + 1; graph[j][1] == node; j++ {
+	for j := i + 1; j < len(graph) && graph[j][1] == node; j++ {
 		degree++
 	}
-	for j := i; graph[j][1] == node; j-- {
+	for j := i; j >= 0 && graph[j][1] == node; j-- {
 		degree++
 	}
 	return degree, nil
@@ -121,12 +128,12 @@ func adjust(i, step int, graph [][2]int, node int) (int, int) {
 		return i, step
 	}
 	if graph[i][1] > node {
-		for graph[i][1] > node {
+		for i > 0 && graph[i][1] > node {
 			i--
 		}
 		return i, step + 1
 	}
-	for graph[i][1] < node {
+	for i < len(graph)-1 && graph[i][1] < node {
 		i++
 	}
 	return i, step - 1
@@ -137,12 +144,12 @@ func find(i int, graph [][2]int, node int) int {
 		return i
 	}
 	if graph[i][0] > node {
-		for graph[i][0] > node {
+		for i > 0 && graph[i][0] > node {
 			i--
 		}
 		return i
 	}
-	for graph[i][0] < node {
+	for i < len(graph)-1 && graph[i][0] < node {
 		i++
 	}
 	return i
