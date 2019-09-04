@@ -32,7 +32,7 @@
  - [x] ([@shogg](https://github.com/shogg)) [snowflakes](https://github.com/plutov/practice-go/tree/master/snowflakes)
  - [x] ([@shogg](https://github.com/shogg)) [brokennode](https://github.com/plutov/practice-go/tree/master/brokennode)
  - [x] ([@shogg](https://github.com/shogg)) [nasacollage](https://github.com/plutov/practice-go/tree/master/nasacollage)
-- [ ] [node_degree](https://github.com/plutov/practice-go/tree/master/node_degree)
+- [x] ([@shogg](https://github.com/shogg)) [node_degree](https://github.com/plutov/practice-go/tree/master/node_degree)
 
 ### Run tests with benchmarks
 
