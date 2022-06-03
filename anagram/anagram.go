@@ -1,51 +1,40 @@
 package anagram
 
-import "strings"
+import (
+	"sort"
+	"strings"
+	"unicode"
+)
+
+type MyRune []rune
+
+func (r MyRune) Len() int           { return len(r) }
+func (r MyRune) Swap(i, j int)      { r[i], r[j] = r[j], r[i] }
+func (r MyRune) Less(i, j int) bool { return r[i] < r[j] }
+
+func Normalize(s string) string {
+	var r MyRune
+	for _, b := range []rune(s) {
+		b = unicode.ToLower(b)
+		if b >= 'a' && b <= 'z' {
+			r = append(r, b)
+		}
+	}
+	sort.Sort(r)
+	return string(r)
+}
 
 func FindAnagrams(dictionary []string, word string) (result []string) {
-	word = normalize(word)
-	if len(word) == 0 {
-		return nil
+	n := Normalize(word)
+	if len(n) == 0 {
+		return []string{}
 	}
-
-	charDir := parseCharDic(word)
-	for _, value := range dictionary {
-		ww := normalize(value)
-		// ignore exact match or empty word(not anagram)
-		if ww == word || len(ww) == 0 {
-			continue
-		}
-
-		if compareDics(charDir, parseCharDic(ww)) {
-			result = append(result, value)
+	var res []string
+	for _, s := range dictionary {
+		n2 := Normalize(s)
+		if n == n2 && strings.ToLower(s) != strings.ToLower(word) {
+			res = append(res, s)
 		}
 	}
-	return result
-}
-
-func normalize(s string) string {
-	return strings.Replace(strings.ToLower(s), " ", "", -1)
-}
-
-func parseCharDic(word string) (result map[rune]int) {
-	result = make(map[rune]int)
-	for _, char := range word {
-		result[char] = result[char] + 1
-	}
-
-	return result
-}
-
-func compareDics(dic1, dic2 map[rune]int) bool {
-	if len(dic1) != len(dic2) {
-		return false
-	}
-
-	for key, value := range dic1 {
-		if dic2[key] != value {
-			return false
-		}
-	}
-
-	return true
+	return res
 }
