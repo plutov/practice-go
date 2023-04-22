@@ -24,16 +24,15 @@ var numbers = []romanArabic{
 }
 
 func Encode(n int) (string, bool) {
-	result := ""
-
+	var sb = strings.Builder{}
 	for _, ra := range numbers {
 		for n >= ra.arabic {
 			n -= ra.arabic
-			result += ra.roman
+			sb.WriteString(ra.roman)
 		}
 	}
 
-	return result, len(result) > 0
+	return sb.String(), sb.Len() > 0
 }
 
 func Decode(s string) (int, bool) {
