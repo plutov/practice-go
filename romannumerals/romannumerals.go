@@ -24,7 +24,7 @@ var numbers = []romanArabic{
 }
 
 func Encode(n int) (string, bool) {
-	var sb = strings.Builder{}
+	var sb strings.Builder
 	for _, ra := range numbers {
 		for n >= ra.arabic {
 			n -= ra.arabic
