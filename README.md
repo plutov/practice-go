@@ -8,6 +8,7 @@
  - Run tests and benchmarks.
  - Create a PR to `master` branch and answer questions from PR template.
  - We will choose the most fast and elegant solution and merge into the repo within 7 days.
+ - New solutions may come in after some time and be merged as well if they are: faster, cleaner, have less CPU/Mem footprint
 
 ### Challenges
 
