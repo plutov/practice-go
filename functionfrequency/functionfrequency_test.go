@@ -32,11 +32,39 @@ func TestFunctionFrequency(t *testing.T) {
 	}
 }
 
+func TestFunctionFrequencyFSM(t *testing.T) {
+	for fileName, functionsCollection := range expected {
+		actual := FunctionFrequencyFSM(getGoCode(fileName))
+		found := false
+
+		for _, functions := range functionsCollection {
+			if reflect.DeepEqual(actual, functions) {
+				found = true
+				break
+			}
+		}
+
+		if !found {
+			t.Errorf("FunctionFrequency() expected one of %v, got %v. File: %s", functionsCollection, actual, fileName)
+		}
+
+	}
+}
+
 func BenchmarkFunctionFrequency(b *testing.B) {
 	for fileName := range expected {
 		code := getGoCode(fileName)
 		for i := 0; i < b.N; i++ {
 			FunctionFrequency(code)
+		}
+	}
+}
+
+func BenchmarkFunctionFrequencyFSM(b *testing.B) {
+	for fileName := range expected {
+		code := getGoCode(fileName)
+		for i := 0; i < b.N; i++ {
+			FunctionFrequencyFSM(code)
 		}
 	}
 }
