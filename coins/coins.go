@@ -1,37 +1,20 @@
 package coins
 
-// Piles func
 func Piles(n int) int {
-	return piles(n, n)
-}
-
-type cache map[int]map[int]int
-
-// m is our memoizing cache
-var m = make(cache)
-
-// piles implements the recursive partition function
-// that memoizes values in a pkg local cache
-//
-// see: https://en.wikipedia.org/wiki/Partition_(number_theory)
-// see: https://projecteuler.net/problem=78
-func piles(n, k int) int {
-	// base cases
-	if n == 0 {
-		return 1
+	dp := make([][]int, n+1)
+	dp[0] = make([]int, n+1)
+	for i := range dp[0] {
+		dp[0][i] = 1
 	}
-	if k == 0 || n < 0 {
-		return 0
+	for i := 1; i <= n; i++ {
+		dp[i] = make([]int, n+1)
+		for j := 1; j <= n; j++ {
+			if i >= j {
+				dp[i][j] = dp[i-j][j] + dp[i][j-1]
+			} else {
+				dp[i][j] = dp[i][j-1]
+			}
+		}
 	}
-	// ensure cache map
-	if _, nok := m[n]; !nok {
-		m[n] = make(map[int]int)
-	}
-	// check in cache
-	if v := m[n][k]; v != 0 {
-		return v
-	}
-	// compute recursively & return
-	m[n][k] = piles(n-k, k) + piles(n, k-1)
-	return m[n][k]
+	return dp[n][n]
 }
