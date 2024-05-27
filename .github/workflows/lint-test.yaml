@@ -17,11 +17,11 @@ jobs:
           go install honnef.co/go/tools/cmd/staticcheck@latest
           go install mvdan.cc/unparam@latest
       - name: go vet
-        run: go vet ${{ inputs.path }}
+        run: go vet ./...
       - name: staticcheck
-        run: staticcheck ${{ inputs.path }}
+        run: staticcheck ./...
       - name: unparam
-        run: unparam ${{ inputs.path }}
+        run: unparam ./...
 
   test:
     runs-on: ubuntu-latest
