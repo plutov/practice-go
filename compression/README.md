@@ -1,4 +1,4 @@
-### Build a compression
+### Build a compression tool
 
 This challenge focuses on creating a simple lossless compression tool from scratch. You'll need to implement an algorithm to achieve compression without relying on external libraries, you can use a known algorithm though (for example Huffman). The goal is to balance compression ratio (how much smaller the compressed file is compared to the original) and compression/decompression speed.
 
