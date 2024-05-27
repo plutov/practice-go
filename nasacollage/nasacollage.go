@@ -7,8 +7,8 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/shogg/practice-go/nasacollage/apod"
-	"github.com/shogg/practice-go/nasacollage/collage"
+	"github.com/plutov/practice-go/nasacollage/apod"
+	"github.com/plutov/practice-go/nasacollage/collage"
 )
 
 func main() {

@@ -34,6 +34,7 @@
  - [x] ([@shogg](https://github.com/shogg)) [brokennode](https://github.com/plutov/practice-go/tree/master/brokennode)
  - [x] ([@shogg](https://github.com/shogg)) [nasacollage](https://github.com/plutov/practice-go/tree/master/nasacollage)
 - [x] ([@shogg](https://github.com/shogg)) [node_degree](https://github.com/plutov/practice-go/tree/master/node_degree)
+- [ ] [compression](https://github.com/plutov/practice-go/tree/master/compression)
 
 ### Run tests with benchmarks
 

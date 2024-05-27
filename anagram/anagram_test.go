@@ -2,7 +2,7 @@ package anagram
 
 import (
 	"fmt"
-	"io/ioutil"
+	"os"
 	"strings"
 	"testing"
 )
@@ -25,7 +25,7 @@ var tests = []struct {
 }
 
 func init() {
-	content, err := ioutil.ReadFile("dictionary.txt")
+	content, err := os.ReadFile("dictionary.txt")
 	if err != nil {
 		panic(err)
 	}

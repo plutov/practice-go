@@ -1,16 +1,16 @@
 package functionfrequency
 
 import (
-	"io/ioutil"
+	"os"
 	"reflect"
 	"testing"
 )
 
 var expected = map[string][][]string{
-	"gocode0.txt": [][]string{{"fmt.Println", "Honda", "append"}},
-	"gocode1.txt": [][]string{{"cmd.CommandPath", "errors.Errorf", "len"}, {"cmd.CommandPath", "len", "errors.Errorf"}},
-	"gocode2.txt": [][]string{{"fmt.Errorf", "os.FileMode", "strings.Replace"}, {"fmt.Errorf", "os.FileMode", "bindataRead"}, {"fmt.Errorf", "os.FileMode", "time.Unix"}},
-	"gocode3.txt": [][]string{{"recursiveInterpolate", "errors.Errorf", "template.Substitute"}, {"recursiveInterpolate", "errors.Errorf", "errors.Wrapf"}, {"recursiveInterpolate", "errors.Errorf", "interpolateSectionItem"}, {"recursiveInterpolate", "errors.Errorf", "len"}, {"recursiveInterpolate", "errors.Errorf", "make"}},
+	"gocode0.txt": {{"fmt.Println", "Honda", "append"}},
+	"gocode1.txt": {{"cmd.CommandPath", "errors.Errorf", "len"}, {"cmd.CommandPath", "len", "errors.Errorf"}},
+	"gocode2.txt": {{"fmt.Errorf", "os.FileMode", "strings.Replace"}, {"fmt.Errorf", "os.FileMode", "bindataRead"}, {"fmt.Errorf", "os.FileMode", "time.Unix"}},
+	"gocode3.txt": {{"recursiveInterpolate", "errors.Errorf", "template.Substitute"}, {"recursiveInterpolate", "errors.Errorf", "errors.Wrapf"}, {"recursiveInterpolate", "errors.Errorf", "interpolateSectionItem"}, {"recursiveInterpolate", "errors.Errorf", "len"}, {"recursiveInterpolate", "errors.Errorf", "make"}},
 }
 
 func TestFunctionFrequency(t *testing.T) {
@@ -70,7 +70,7 @@ func BenchmarkFunctionFrequencyFSM(b *testing.B) {
 }
 
 func getGoCode(fileName string) []byte {
-	code, err := ioutil.ReadFile(fileName)
+	code, err := os.ReadFile(fileName)
 	if err != nil {
 		panic(err)
 	}

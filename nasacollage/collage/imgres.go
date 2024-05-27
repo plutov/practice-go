@@ -38,7 +38,7 @@ func ListDir(path string) ([]Imgres, error) {
 		}
 
 		filename := filepath.Join(path, inf.Name())
-		f, err := os.Open(filename)
+		f, _ := os.Open(filename)
 		conf, _, err := image.DecodeConfig(f)
 		if err != nil {
 			return nil, fmt.Errorf("%s: %s", filename, err)

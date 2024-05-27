@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/shogg/practice-go/nasacollage/collage"
+	"github.com/plutov/practice-go/nasacollage/collage"
 )
 
 func TestHighLowIndex(t *testing.T) {

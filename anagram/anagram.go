@@ -14,7 +14,7 @@ func (r MyRune) Less(i, j int) bool { return r[i] < r[j] }
 
 func Normalize(s string) string {
 	var r MyRune
-	for _, b := range []rune(s) {
+	for _, b := range s {
 		b = unicode.ToLower(b)
 		if b >= 'a' && b <= 'z' {
 			r = append(r, b)
@@ -32,7 +32,7 @@ func FindAnagrams(dictionary []string, word string) (result []string) {
 	var res []string
 	for _, s := range dictionary {
 		n2 := Normalize(s)
-		if n == n2 && strings.ToLower(s) != strings.ToLower(word) {
+		if n == n2 && !strings.EqualFold(s, word) {
 			res = append(res, s)
 		}
 	}

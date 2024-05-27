@@ -11,10 +11,10 @@ func CanKnightAttack(white, black string) (bool, error) {
 
 	// Check if pieces are on board
 	if white[0]-'a' > 7 || white[1]-'1' > 7 {
-		return false, errors.New("Invalid white position")
+		return false, errors.New("invalid white position")
 	}
 	if black[0]-'a' > 7 || black[1]-'1' > 7 {
-		return false, errors.New("Invalid black position")
+		return false, errors.New("invalid black position")
 	}
 
 	// Calculate distance between knights in each axis
@@ -25,7 +25,7 @@ func CanKnightAttack(white, black string) (bool, error) {
 	if (d0 == 1 && d1 == 2) || (d0 == 2 && d1 == 1) {
 		return true, nil
 	} else if d0 == 0 && d1 == 0 {
-		return false, errors.New("You can't stack 'em you silly.")
+		return false, errors.New("you cannot stack them you silly")
 	}
 	return false, nil
 }

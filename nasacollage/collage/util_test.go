@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/shogg/practice-go/nasacollage/collage"
+	"github.com/plutov/practice-go/nasacollage/collage"
 )
 
 func TestDisjoint(t *testing.T) {

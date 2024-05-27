@@ -2,7 +2,8 @@ package lastlettergame
 
 import (
 	"fmt"
-	"io/ioutil"
+	"os"
+
 	"strings"
 	"testing"
 )
@@ -16,7 +17,7 @@ var (
 )
 
 func init() {
-	content, err := ioutil.ReadFile("pokemons.txt")
+	content, err := os.ReadFile("pokemons.txt")
 	if err != nil {
 		panic(err)
 	}
