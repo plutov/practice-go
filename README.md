@@ -1,4 +1,4 @@
-## Go coding exercises and elegant solutions [![Build Status](https://travis-ci.org/plutov/practice-go.svg?branch=master)](https://travis-ci.org/plutov/practice-go)
+## Go coding exercises and elegant solutions
 
 ### How to solve
 

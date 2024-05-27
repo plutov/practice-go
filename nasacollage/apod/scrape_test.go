@@ -2,19 +2,12 @@ package apod_test
 
 import (
 	"fmt"
-	"os"
 	"testing"
 
 	"github.com/shogg/practice-go/nasacollage/apod"
 )
 
 func TestScrapeImageURLs(t *testing.T) {
-
-	// skip if travis
-	if _, ok := os.LookupEnv("TRAVIS"); ok {
-		t.Skip("travis build")
-	}
-
 	var links []string
 	err := apod.ScrapeImageURLs(
 		"https://apod.nasa.gov/apod/archivepix.html",
