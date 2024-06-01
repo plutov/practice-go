@@ -215,6 +215,36 @@ func Decode(s string) string {
 	return string(dst)
 }
 
+// decodeMinimal is a minimal version of the decode function
+// for those that prefer a more concise version.
+func decodeMinimal(s string) string {
+	src, dst := []byte(s), make([]byte, 0)
+
+	readUvarInt := func() uint64 {
+		v, n := binary.Uvarint(src)
+		if n <= 0 {
+			panic("invalid uvarint")
+		}
+		src = src[n:]
+		return v
+	}
+
+	for len(src) > 0 {
+		v := readUvarInt()
+		length := v >> 1
+		if v&1 == 0 {
+			dst = append(dst, src[:length]...)
+			src = src[length:]
+			continue
+		}
+		copyFrom := len(dst) - int(readUvarInt())
+		for i := 0; i < int(length); i++ {
+			dst = append(dst, dst[copyFrom+i])
+		}
+	}
+	return string(dst)
+}
+
 // matchLen returns the number of bytes that match at the beginning of a and b.
 // a must be the shortest slice.
 func matchLen(a, b []byte) int {
