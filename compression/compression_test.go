@@ -32,6 +32,7 @@ func TestEncodeDecode(t *testing.T) {
 }
 
 func BenchmarkEncodeDecode(b *testing.B) {
+	b.SetBytes(originalLength)
 	for i := 0; i < b.N; i++ {
 		encoded := Encode(originalContent)
 		Decode(encoded)
