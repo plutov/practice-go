@@ -1,26 +1,20 @@
 package anagram
 
 import (
-	"sort"
+	"slices"
 	"strings"
 	"unicode"
 )
 
-type MyRune []rune
-
-func (r MyRune) Len() int           { return len(r) }
-func (r MyRune) Swap(i, j int)      { r[i], r[j] = r[j], r[i] }
-func (r MyRune) Less(i, j int) bool { return r[i] < r[j] }
-
 func Normalize(s string) string {
-	var r MyRune
+	var r []rune
 	for _, b := range s {
 		b = unicode.ToLower(b)
 		if b >= 'a' && b <= 'z' {
 			r = append(r, b)
 		}
 	}
-	sort.Sort(r)
+	slices.Sort(r)
 	return string(r)
 }
 
