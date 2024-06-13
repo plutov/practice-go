@@ -26,12 +26,19 @@ func TestEncodeDecode(t *testing.T) {
 		t.Errorf("Decode(Encode(originalContent)) = %s, want %s", decoded, originalContent)
 	}
 
+	// Test minimal decoder
+	decoded = decodeMinimal(encoded)
+	if originalContent != decoded {
+		t.Errorf("decodeMinimal(Encode(originalContent)) = %s, want %s", decoded, originalContent)
+	}
+
 	// print compression ratio
 	encodedLength := int64(len(encoded))
 	fmt.Printf("\nOriginal length: %d, Encoded length: %d, Compression ratio: %.2f\n\n", originalLength, encodedLength, float64(encodedLength)/float64(originalLength))
 }
 
 func BenchmarkEncodeDecode(b *testing.B) {
+	b.SetBytes(originalLength)
 	for i := 0; i < b.N; i++ {
 		encoded := Encode(originalContent)
 		Decode(encoded)
