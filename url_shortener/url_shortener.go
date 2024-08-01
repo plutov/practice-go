@@ -1,48 +1,102 @@
 package url_shortener
 
 import (
-	"bufio"
+	"crypto/sha256"
+	"encoding/base64"
+	"errors"
 	"fmt"
-	"hash/fnv"
-	"os"
-	"strings"
+	"net/http"
 	"sync"
 )
 
-var (
-	urlMap = sync.Map{}
-)
-
-func Shorten(url string) string {
-	hasher := fnv.New32a()
-	hasher.Write([]byte(url))
-	short := fmt.Sprintf("%x", hasher.Sum32())
-	urlMap.Store(short, url)
-	return short
+type Storage interface {
+	Save(key, value string) error
+	Load(key string) (string, error)
 }
 
-func Expand(short string) string {
-	if url, ok := urlMap.Load(short); ok {
-		return url.(string)
-	}
-	return ""
+type MemoryStorage struct {
+	data sync.Map
 }
 
-func Run() {
-	reader := bufio.NewReader(os.Stdin)
-	fmt.Println("Enter a URL to shorten or a short code to expand:")
-	input, _ := reader.ReadString('\n')
-	input = strings.TrimSpace(input)
+func (m *MemoryStorage) Save(key, value string) error {
+	m.data.Store(key, value)
+	return nil
+}
 
-	if strings.HasPrefix(input, "http://") || strings.HasPrefix(input, "https://") {
-		short := Shorten(input)
-		fmt.Printf("Alright, here's your shortened URL: %s\n", short)
-	} else {
-		original := Expand(input)
-		if original != "" {
-			fmt.Printf("Here's the original URL: %s\n", original)
-		} else {
-			fmt.Println("Short code not found")
-		}
+func (m *MemoryStorage) Load(key string) (string, error) {
+	if value, ok := m.data.Load(key); ok {
+		return value.(string), nil
 	}
+	return "", errors.New("key not found")
+}
+
+type URLShortener struct {
+	storage Storage
+}
+
+func NewURLShortener(storage Storage) *URLShortener {
+	return &URLShortener{storage: storage}
+}
+
+func (us *URLShortener) Shorten(url string) (string, error) {
+	hash := sha256.Sum256([]byte(url))
+	encoded := base64.URLEncoding.EncodeToString(hash[:])
+	short := encoded[:8]
+
+	err := us.storage.Save(short, url)
+	if err != nil {
+		return "", fmt.Errorf("failed to save the URL: %v", err)
+	}
+
+	return short, nil
+}
+
+func (us *URLShortener) Expand(short string) (string, error) {
+	url, err := us.storage.Load(short)
+	if err != nil {
+		return "", fmt.Errorf("failed to load the URL: %v", err)
+	}
+	return url, nil
+}
+
+func (us *URLShortener) HandleShorten(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	url := r.FormValue("url")
+	if url == "" {
+		http.Error(w, "URL is required", http.StatusBadRequest)
+		return
+	}
+
+	short, err := us.Shorten(url)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	fmt.Fprintf(w, "Shortened URL: %s\n", short)
+}
+
+func (us *URLShortener) HandleExpand(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	short := r.URL.Path[len("/expand/"):]
+	if short == "" {
+		http.Error(w, "Short code is required", http.StatusBadRequest)
+		return
+	}
+
+	url, err := us.Expand(short)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusNotFound)
+		return
+	}
+
+	http.Redirect(w, r, url, http.StatusFound)
 }
