@@ -37,7 +37,7 @@ Follow me on [https://packagemain.tech](packagemain.tech) to read other stuff I 
  - [x] ([@shogg](https://github.com/shogg)) [nasacollage](https://github.com/plutov/practice-go/tree/master/nasacollage)
 - [x] ([@shogg](https://github.com/shogg)) [node_degree](https://github.com/plutov/practice-go/tree/master/node_degree)
 - [ ] [compression](https://github.com/plutov/practice-go/tree/master/compression)
-- [ ] [calculator](https://github.com/plutov/practice-go/tree/master/calculator)
+- [x] ([@CicadaCinema](https://github.com/CicadaCinema)) [calculator](https://github.com/plutov/practice-go/tree/master/calculator)
 
 ### Run tests with benchmarks
 
