@@ -1,7 +1,5 @@
 ## Go coding exercises and elegant solutions
 
-Follow me on [https://packagemain.tech](packagemain.tech) to read other stuff I do with Go.
-
 ### How to solve
 
  - Each folder has a README.md file and `*_test.go` file, check it and find what kind of function you need to implement.
