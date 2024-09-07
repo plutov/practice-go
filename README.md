@@ -2,13 +2,13 @@
 
 ### How to solve
 
- - Each folder has a README.md file and `*_test.go` file, check it and find what kind of function you need to implement.
- - You may use anything you want except 3rd-party packages.
+ - Each challenge(folder) has a README.md file and `*_test.go` file, check it and find what kind of function you need to implement.
+ - You may use anything you want except the 3rd-party packages.
  - Implement the function.
- - Run tests and benchmarks.
- - Create a PR to `master` branch and answer questions from PR template.
- - We will choose the most fast and elegant solution and merge into the repo within 7 days.
- - New solutions may come in after some time and be merged as well if they are: faster, cleaner, have less CPU/Mem footprint
+ - Run the tests and benchmarks.
+ - Create a PR and answer questions from PR template.
+ - We will choose the most fast and elegant solution and merge into the repo.
+ - New solutions may come in later and be merged as well if they are: faster, cleaner, have less CPU/Mem footprint
 
 ### Challenges
 
@@ -45,8 +45,16 @@ Run it in the challenge folder:
 go test -bench .
 ```
 
-### How to create new challenge from template
+### How to contribute
+
+You may suggest other challenges as well, not only of DSA type.
+
+Create a new challenge using this small bash script and create a PR.
 
 ```
 ./new.sh challenge_name
 ```
+
+The challenge must follow these rules:
+- Explain the challenge well in README.md file so it's clear to everyone what needs to be done.
+- Cover as much of test cases as possible, edge cases as well so people who solve it can focus on the implementation only.
