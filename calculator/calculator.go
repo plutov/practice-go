@@ -65,7 +65,7 @@ func EvalNoBrackets(tokens []Token) (float64, error) {
 			}
 
 			if len(result) < 2 {
-				return 0, errors.New("Not enough literals on the stack to perform a binary computation.")
+				return 0, errors.New("not enough literals on the stack to perform a binary computation")
 			}
 
 			val2 := result[len(result)-1]
@@ -82,7 +82,7 @@ func EvalNoBrackets(tokens []Token) (float64, error) {
 			case Divide:
 				valResult = val1 / val2
 			default:
-				return 0, errors.New("Unexpected symbol.")
+				return 0, errors.New("unexpected symbol")
 			}
 
 			result = append(result[:len(result)-2], valResult)
@@ -92,7 +92,7 @@ func EvalNoBrackets(tokens []Token) (float64, error) {
 	}
 
 	if len(result) != 1 {
-		return 0, errors.New("Unexpected number of literals left on the stack after performing all computations.")
+		return 0, errors.New("unexpected number of literals left on the stack after performing all computations")
 	}
 
 	return result[0], nil
@@ -155,7 +155,7 @@ func Eval(expr string) (float64, error) {
 			nestingLevel++
 		} else if token.isSymbol && token.symbol == RBracket {
 			if nestingLevel == 0 {
-				return 0, errors.New("Too many closing brackets.")
+				return 0, errors.New("too many closing brackets")
 			}
 			// The highest nesting level has been closed, so we can evaluate its expression and record the result in the next level of nesting.
 			result, err := EvalNoBrackets(nestedExprs[nestingLevel])
@@ -171,7 +171,7 @@ func Eval(expr string) (float64, error) {
 	}
 
 	if nestingLevel != 0 || len(nestedExprs) != 1 {
-		return 0, errors.New("Too many opening brackets.")
+		return 0, errors.New("too many opening brackets")
 	}
 
 	result, err := EvalNoBrackets(nestedExprs[nestingLevel])
