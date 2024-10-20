@@ -12,7 +12,7 @@
 
 ### Challenges
 
- - [x] ([@macocha](https://github.com/macocha)) [chess](https://github.com/plutov/practice-go/tree/master/chess)
+ - [x] ([@macocha](https://github.com/macocha), [@mick4711](https://github.com/mick4711)) [chess](https://github.com/plutov/practice-go/tree/master/chess)
  - [x] ([@kennygrant](https://github.com/kennygrant)) [floyd](https://github.com/plutov/practice-go/tree/master/floyd)
  - [x] ([@ledongthuc](https://github.com/ledongthuc)) [anagram](https://github.com/plutov/practice-go/tree/master/anagram)
  - [x] ([@heliac2000](https://github.com/heliac2000)) [jaro](https://github.com/plutov/practice-go/tree/master/jaro)
