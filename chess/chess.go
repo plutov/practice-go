@@ -5,7 +5,7 @@ import (
 	"math"
 )
 
-var invalidSquareErr = errors.New("invalid square")
+var errInvalidSquare = errors.New("invalid square")
 
 // Knights can attack when seperated by 2 squares in one direction and 1 square in the other direction.
 // Horizontal axis is called 'file' labelled from 'a' to 'f'
@@ -13,33 +13,33 @@ var invalidSquareErr = errors.New("invalid square")
 func CanKnightAttack(white, black string) (bool, error) {
 	// square must have 2 characters
 	if len(white) != 2 || len(black) != 2 {
-		return true, invalidSquareErr
+		return true, errInvalidSquare
 	}
 
 	// cannot be on the same square
 	if white == black {
-		return false, invalidSquareErr
+		return false, errInvalidSquare
 	}
 
 	// assign integer values (1 - 8) to file letters and rank digits
 	wFile := int(white[0] - 'a' + 1)
 	if wFile < 1 || wFile > 8 {
-		return false, invalidSquareErr
+		return false, errInvalidSquare
 	}
 
 	bFile := int(black[0] - 'a' + 1)
 	if bFile < 1 || bFile > 8 {
-		return false, invalidSquareErr
+		return false, errInvalidSquare
 	}
 
 	wRank := int(white[1] - '1' + 1)
 	if wRank < 1 || wRank > 8 {
-		return false, invalidSquareErr
+		return false, errInvalidSquare
 	}
 
 	bRank := int(black[1] - '1' + 1)
 	if bRank < 1 || bRank > 8 {
-		return false, invalidSquareErr
+		return false, errInvalidSquare
 	}
 
 	// check file and rank relative positions
