@@ -36,6 +36,7 @@
  - [x] ([@shogg](https://github.com/shogg)) [node_degree](https://github.com/plutov/practice-go/tree/master/node_degree)
  - [x] ([@brianpzaide](https://github.com/brianpzaide)) [compression](https://github.com/plutov/practice-go/tree/master/compression)
  - [x] ([@CicadaCinema](https://github.com/CicadaCinema)) [calculator](https://github.com/plutov/practice-go/tree/master/calculator)
+ - [ ] () [meetings](https://github.com/plutov/practice-go/tree/master/meetings)
 
 ### Run tests with benchmarks
 
