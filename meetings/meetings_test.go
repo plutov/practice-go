@@ -30,7 +30,7 @@ func TestMeetings(t *testing.T) {
 		{
 			meetings: []Meeting{
 				{1, 3, 10},
-				{2, 4, 15}, // Overlaps, but has more attendees
+				{2, 4, 15},
 				{5, 7, 7},
 			},
 			rooms: []int{20},
@@ -41,7 +41,7 @@ func TestMeetings(t *testing.T) {
 		},
 		{
 			meetings: []Meeting{
-				{1, 3, 100}, // Insufficient Capacity
+				{1, 3, 100},
 				{4, 6, 5},
 			},
 			rooms: []int{10},
@@ -65,15 +65,16 @@ func TestMeetings(t *testing.T) {
 		{
 			meetings: []Meeting{
 				{1, 3, 10},
-				{2, 4, 12}, // Overlaps, higher priority
+				{2, 4, 12},
 				{4, 6, 7},
-				{1, 2, 15}, // Overlaps and needs a larger room, highest priority
+				{1, 2, 15},
 			},
 			rooms: []int{10, 15},
 			result: []ScheduledMeeting{
-				{Meeting{1, 2, 15}, 1},
-				{Meeting{2, 4, 12}, 0},
+				{Meeting{1, 3, 10}, 0},
+				{Meeting{2, 4, 12}, 1},
 				{Meeting{4, 6, 7}, 0},
+				{Meeting{1, 2, 15}, 1},
 			},
 		},
 		{
@@ -116,8 +117,8 @@ func TestMeetings(t *testing.T) {
 			},
 			rooms: []int{15, 20},
 			result: []ScheduledMeeting{
-				{Meeting{1, 2, 16}, 1},
 				{Meeting{2, 4, 12}, 0},
+				{Meeting{1, 2, 16}, 1},
 				{Meeting{6, 7, 5}, 0},
 			},
 		},
@@ -134,7 +135,7 @@ func TestMeetings(t *testing.T) {
 }
 
 func BenchmarkMeetings(b *testing.B) {
-	numMeetings := 1000 // A good starting point for "large"
+	numMeetings := 1000
 	numRooms := 50
 	maxStartTime := 1000
 	maxDuration := 50
