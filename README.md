@@ -16,7 +16,7 @@
  - [x] ([@kennygrant](https://github.com/kennygrant)) [floyd](https://github.com/plutov/practice-go/tree/master/floyd)
  - [x] ([@ledongthuc](https://github.com/ledongthuc)) [anagram](https://github.com/plutov/practice-go/tree/master/anagram)
  - [x] ([@heliac2000](https://github.com/heliac2000)) [jaro](https://github.com/plutov/practice-go/tree/master/jaro)
- - [x] ([@nguyengiabk](https://github.com/nguyengiabk)) [mergesort](https://github.com/plutov/practice-go/tree/master/mergesort)
+ - [x] ([@nguyengiabk](https://github.com/nguyengiabk), [@denpeshkov](https://github.com/denpeshkov)) [mergesort](https://github.com/plutov/practice-go/tree/master/mergesort)
  - [x] ([@nguyengiabk](https://github.com/nguyengiabk)) [wordladder](https://github.com/plutov/practice-go/tree/master/wordladder)
  - [x] ([@EvenPeng](https://github.com/EvenPeng)) [sumdecimal](https://github.com/plutov/practice-go/tree/master/sumdecimal)
  - [x] ([@bediger4000](https://github.com/bediger4000)) [buildword](https://github.com/plutov/practice-go/tree/master/buildword)
@@ -59,3 +59,9 @@ Create a new challenge using this small bash script and create a PR.
 The challenge must follow these rules:
 - Explain the challenge well in README.md file so it's clear to everyone what needs to be done.
 - Cover as much of test cases as possible, edge cases as well so people who solve it can focus on the implementation only.
+
+### Contributors
+
+<a href="https://github.com/plutov/practice-go/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=plutov/practice-go" />
+</a>
