@@ -2,29 +2,30 @@ package mergesort
 
 // MergeSort is used to sort an array of integer
 func MergeSort(input []int) []int {
-	length := len(input)
-	if length <= 1 {
-		return input
+	aux := make([]int, len(input))
+
+	var sort func(input []int)
+	sort = func(s []int) {
+		if len(s) <= 1 {
+			return
+		}
+		m := len(s) / 2
+		sort(s[:m])
+		sort(s[m:])
+
+		for k, l, r := 0, 0, m; k < len(s); k++ {
+			if r >= len(s) || (l < m && s[l] <= s[r]) {
+				aux[k] = s[l]
+				l++
+			} else {
+				aux[k] = s[r]
+				r++
+			}
+		}
+		copy(s, aux)
 	}
 
-	firstHalf := MergeSort(input[:length/2])
-	secondHalf := MergeSort(input[length/2:])
-	var i, j, k int
-	output := make([]int, length)
-	for i < len(firstHalf) {
-		for j < len(secondHalf) && secondHalf[j] <= firstHalf[i] {
-			output[k] = secondHalf[j]
-			k++
-			j++
-		}
-		output[k] = firstHalf[i]
-		k++
-		i++
-	}
-	for j < len(secondHalf) {
-		output[k] = secondHalf[j]
-		k++
-		j++
-	}
-	return output
+	tmp := append([]int{}, input...)
+	sort(tmp)
+	return tmp
 }
