@@ -19,7 +19,7 @@
  - [x] ([@nguyengiabk](https://github.com/nguyengiabk), [@denpeshkov](https://github.com/denpeshkov)) [mergesort](https://github.com/plutov/practice-go/tree/master/mergesort)
  - [x] ([@nguyengiabk](https://github.com/nguyengiabk)) [wordladder](https://github.com/plutov/practice-go/tree/master/wordladder)
  - [x] ([@EvenPeng](https://github.com/EvenPeng)) [sumdecimal](https://github.com/plutov/practice-go/tree/master/sumdecimal)
- - [x] ([@bediger4000](https://github.com/bediger4000)) [buildword](https://github.com/plutov/practice-go/tree/master/buildword)
+ - [x] ([@bediger4000](https://github.com/bediger4000), [Polqt](https://github.com/Polqt)) [buildword](https://github.com/plutov/practice-go/tree/master/buildword)
  - [x] ([@zerkms](https://github.com/zerkms)) [shorthash](https://github.com/plutov/practice-go/tree/master/shorthash)
  - [x] ([@zerkms](https://github.com/zerkms)) [romannumerals](https://github.com/plutov/practice-go/tree/master/romannumerals)
  - [x] ([@zerkms](https://github.com/zerkms)) [lastlettergame](https://github.com/plutov/practice-go/tree/master/lastlettergame)
