@@ -32,7 +32,7 @@ func BuildWordDP(word string, fragments []string) int {
 	}
 
 	if dp[n] > n { // If dp[n] is still n + 1, it means we couldn't build the word with the fragments
-		return 0 
+		return 0
 	}
 	return dp[n] // Return the minimum number of fragments needed to build the word
 }

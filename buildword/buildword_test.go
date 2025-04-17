@@ -24,10 +24,27 @@ func TestBuildWord(t *testing.T) {
 	}
 }
 
+func TestBuildWordDP(t *testing.T) {
+	for _, test := range tests {
+		actual := BuildWordDP(test.word, test.fragments)
+		if actual != test.expected {
+			t.Errorf("BuildWordDP(%s, %v) expected %d, got %d", test.word, test.fragments, test.expected, actual)
+		}
+	}
+}
+
 func BenchmarkBuildWord(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, test := range tests {
 			BuildWord(test.word, test.fragments)
+		}
+	}
+}
+
+func BenchmarkBuildWordDP(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, test := range tests {
+			BuildWordDP(test.word, test.fragments)
 		}
 	}
 }
