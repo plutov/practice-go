@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"os"
 	"strconv"
 	"strings"
@@ -27,17 +28,27 @@ func main() {
 		}
 
 		if strings.HasPrefix(line, "L") {
-			curr = (curr - diff) % 100
+			new := curr - diff
+			if new <= 0 {
+				res += int(math.Abs(float64(new / 100)))
+				if curr != 0 {
+					res++
+				}
+			}
+
+			curr = new % 100
 			if curr < 0 {
 				curr += 100
 			}
 		} else {
-			curr = (curr + diff) % 100
+			new := curr + diff
+			if new >= 100 {
+				res += (new / 100)
+			}
+			curr = new % 100
 		}
 
-		if curr == 0 {
-			res++
-		}
+		fmt.Printf("Current: %d, Line: %s, Diff: %d, Res: %d\n", curr, line, diff, res)
 	}
 
 	fmt.Println(res)
