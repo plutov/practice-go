@@ -37,6 +37,7 @@
  - [x] ([@brianpzaide](https://github.com/brianpzaide)) [compression](https://github.com/plutov/practice-go/tree/master/compression)
  - [x] ([@CicadaCinema](https://github.com/CicadaCinema)) [calculator](https://github.com/plutov/practice-go/tree/master/calculator)
  - [ ] () [meetings](https://github.com/plutov/practice-go/tree/master/meetings)
+ - [ ] () [octantconway](https://github.com/plutov/practice-go/tree/master/octantconway)
 
 ### Run tests with benchmarks
 
