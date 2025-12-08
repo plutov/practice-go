@@ -72,7 +72,7 @@ var bigGraph = [][2]int{
 }
 
 func TestDegree(t *testing.T) {
-	var tests = []struct {
+	tests := []struct {
 		nodes      int
 		graph      [][2]int
 		node       int
@@ -103,13 +103,15 @@ func TestDegree(t *testing.T) {
 }
 
 func BenchmarkDegree(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		Degree(16, bigGraph, 6)
+	for b.Loop() {
+		_, err := Degree(16, bigGraph, 6)
+		if err != nil {
+			fmt.Printf("error: %v\n", err)
+		}
 	}
 }
 
 func TestDegreeBig(t *testing.T) {
-
 	tests := []struct {
 		degree func(int, [][2]int, int) (int, error)
 	}{
@@ -151,11 +153,14 @@ func BenchmarkHuge(b *testing.B) {
 
 func bench(
 	degreeImpl func(int, [][2]int, int) (int, error),
-	nodes int, graph [][2]int, node int) func(*testing.B) {
-
+	nodes int, graph [][2]int, node int,
+) func(*testing.B) {
 	return func(b *testing.B) {
-		for i := 0; i < b.N; i++ {
-			degreeImpl(nodes, graph, node)
+		for b.Loop() {
+			_, err := degreeImpl(nodes, graph, node)
+			if err != nil {
+				fmt.Printf("error: %v\n", err)
+			}
 		}
 	}
 }
@@ -168,7 +173,6 @@ const (
 var hugeGraph [][2]int
 
 func initHugeGraph() {
-
 	if len(hugeGraph) > 0 {
 		return
 	}

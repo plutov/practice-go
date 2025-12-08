@@ -2,14 +2,13 @@ package meetings
 
 import (
 	"fmt"
+	"math/rand"
 	"reflect"
 	"testing"
-
-	"math/rand"
 )
 
 func TestMeetings(t *testing.T) {
-	var tests = []struct {
+	tests := []struct {
 		meetings []Meeting
 		rooms    []int
 		result   []ScheduledMeeting
@@ -128,7 +127,8 @@ func TestMeetings(t *testing.T) {
 		t.Run(fmt.Sprintf("%d", i), func(t *testing.T) {
 			result := Meetings(tt.meetings, tt.rooms)
 			if !reflect.DeepEqual(result, tt.result) {
-				//t.Errorf("Meetings(%v, %v) expected %v, got %v", tt.meetings, tt.rooms, tt.result, result)
+				// TODO: use t.Errorf
+				fmt.Printf("Meetings(%v, %v) expected %v, got %v\n", tt.meetings, tt.rooms, tt.result, result)
 			}
 		})
 	}

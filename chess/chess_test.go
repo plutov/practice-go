@@ -1,6 +1,9 @@
 package chess
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 var tests = []struct {
 	white  string
@@ -45,9 +48,13 @@ func TestCanKnightAttack(t *testing.T) {
 }
 
 func BenchmarkCanKnightAttack(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		for _, test := range tests {
-			CanKnightAttack(test.white, test.black)
+			_, err := CanKnightAttack(test.white, test.black)
+			if err != nil && !test.error {
+				fmt.Printf("CanKnightAttack(%s, %s) returned error %q. Error not expected.",
+					test.white, test.black, err)
+			}
 		}
 	}
 }

@@ -56,15 +56,3 @@ func parseBank(bank string) []int {
 	}
 	return res
 }
-
-func maxInSlice(slice []int) (int, int) {
-	max := slice[0]
-	index := 0
-	for i, v := range slice {
-		if v > max {
-			max = v
-			index = i
-		}
-	}
-	return max, index
-}

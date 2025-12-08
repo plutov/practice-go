@@ -8,11 +8,12 @@ import (
 	"strings"
 )
 
-var regexpPageURL = regexp.MustCompile(`(?i)(ap\d{6}.html)`)
-var regexpImageURL = regexp.MustCompile(`(?i)src="(image/[^"]*)"`)
+var (
+	regexpPageURL  = regexp.MustCompile(`(?i)(ap\d{6}.html)`)
+	regexpImageURL = regexp.MustCompile(`(?i)src="(image/[^"]*)"`)
+)
 
 func ScrapeImageURLs(mainURL string, callback func(string)) error {
-
 	lastSlash := strings.LastIndex(mainURL, "/")
 	baseURL := mainURL[:lastSlash]
 
@@ -40,7 +41,6 @@ func ScrapeImageURLs(mainURL string, callback func(string)) error {
 }
 
 func scrape(url string, re *regexp.Regexp) ([]string, error) {
-
 	var links []string
 
 	mainpage, err := http.Get(url)
@@ -51,7 +51,12 @@ func scrape(url string, re *regexp.Regexp) ([]string, error) {
 		return nil, fmt.Errorf("%s", mainpage.Status)
 	}
 
-	defer mainpage.Body.Close()
+	defer func() {
+		err := mainpage.Body.Close()
+		if err != nil {
+			fmt.Printf("Error closing body: %v\n", err)
+		}
+	}()
 
 	scanner := bufio.NewScanner(mainpage.Body)
 	for scanner.Scan() {

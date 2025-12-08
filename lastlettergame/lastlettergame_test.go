@@ -3,7 +3,6 @@ package lastlettergame
 import (
 	"fmt"
 	"os"
-
 	"strings"
 	"testing"
 )
@@ -56,7 +55,7 @@ func validateSequenceRes(result []string) bool {
 		return false
 	}
 
-	var unique map[string]bool = make(map[string]bool, len(expected))
+	unique := make(map[string]bool, len(expected))
 	unique[result[0]] = true
 	for i := 1; i < len(result); i++ {
 		if _, ok := dic[result[i]]; !ok {
@@ -77,7 +76,7 @@ func canBeNextWord(prev, next string) bool {
 	if len(prev) < 2 || len(next) < 2 {
 		return false
 	}
-	var rprev []rune = []rune(prev)
-	var rnext []rune = []rune(next)
+	rprev := []rune(prev)
+	rnext := []rune(next)
 	return rprev[len(rprev)-1] == rnext[0]
 }

@@ -39,7 +39,8 @@ func TestOctantConway(t *testing.T) {
 		a := trimTrailingWhitespace([]byte(test.expected))
 		b := trimTrailingWhitespace(conf)
 		if !bytes.Equal(a, b) {
-			// t.Errorf("test failed\nexpected\n%sactual\n%s", a, b)
+			// TODO: use t.Errorf
+			fmt.Printf("test failed\nexpected\n%sactual\n%s", a, b)
 		}
 	}
 }

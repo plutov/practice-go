@@ -1,6 +1,9 @@
 package calculator
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 var tests = []struct {
 	expr     string
@@ -39,7 +42,10 @@ func TestEval(t *testing.T) {
 }
 
 func BenchmarkEval(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		Eval("(2 + (1)) - (-3) * 4")
+	for b.Loop() {
+		_, err := Eval("(2 + (1)) - (-3) * 4")
+		if err != nil {
+			fmt.Printf("Eval failed: %v", err)
+		}
 	}
 }
