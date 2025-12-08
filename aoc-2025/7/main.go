@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"strings"
 )
@@ -16,77 +15,45 @@ func main() {
 	lines = lines[:len(lines)-1]
 
 	input := make([][]string, len(lines))
+	indexOfRay := -1
 	for i, line := range lines {
 		input[i] = make([]string, len(line))
 		for j := 0; j < len(line); j++ {
 			if line[j] == 'S' {
 				input[i][j] = "|"
+				indexOfRay = j
 			} else {
 				input[i][j] = string(line[j])
 			}
 		}
 	}
 
-	allInputs := allPossibleInputs(input)
-	fmt.Println("Total inputs:", len(allInputs))
+	rayCounts := make(map[int]int)
+	rayCounts[indexOfRay] = 1
 
-	uniqueTimelines := make(map[string]bool)
-	for _, input := range allInputs {
-		for i, line := range input {
-			for j, char := range line {
-				if i == 0 {
-					continue
-				}
-
-				if char == "<" && j > 0 && input[i-1][j] == "|" {
-					input[i][j-1] = "|"
-					input[i][j] = "."
-				} else if char == ">" && j < len(line)-1 && input[i-1][j] == "|" {
-					input[i][j+1] = "|"
-					input[i][j] = "."
-					j++
-				} else if char == "." && input[i-1][j] == "|" {
-					input[i][j] = "|"
-				} else if char != "|" {
-					input[i][j] = "."
-				}
-			}
-		}
-		timelineStr := ""
-		for _, line := range input {
-			timelineStr += strings.Join(line, "")
-		}
-		uniqueTimelines[timelineStr] = true
-	}
-
-	fmt.Println(len(uniqueTimelines))
-}
-
-func allPossibleInputs(input [][]string) [][][]string {
 	for i, line := range input {
+		if i == 0 {
+			continue
+		}
+
 		for j, char := range line {
-			if char == "^" {
-				leftInput := copyInput(input)
-				leftInput[i][j] = "<"
-				left := allPossibleInputs(leftInput)
-
-				rightInput := copyInput(input)
-				rightInput[i][j] = ">"
-				right := allPossibleInputs(rightInput)
-
-				return append(left, right...)
+			if char == "^" && rayCounts[j] > 0 {
+				if j > 0 {
+					rayCounts[j-1] += rayCounts[j]
+				}
+				if j < len(line)-1 {
+					rayCounts[j+1] += rayCounts[j]
+				}
+				rayCounts[j] = 0
+			} else {
+				continue
 			}
 		}
+
 	}
 
-	return [][][]string{input}
-}
-
-func copyInput(input [][]string) [][]string {
-	newInput := make([][]string, len(input))
-	for i := range input {
-		newInput[i] = make([]string, len(input[i]))
-		copy(newInput[i], input[i])
+	res := 0
+	for _, count := range rayCounts {
+		res += count
 	}
-	return newInput
 }
