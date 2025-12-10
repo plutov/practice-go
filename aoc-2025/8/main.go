@@ -43,9 +43,11 @@ func main() {
 		points[i] = p
 	}
 
-	uniquePairs := make(map[[2]int]struct{})
 	pairs := [][2]Point3D{}
+	circuits := []Circuit{}
 	for i := range points {
+		circuits = append(circuits, Circuit{Points: []int{i}})
+
 		for j := range points {
 			if i == j {
 				continue
@@ -53,30 +55,24 @@ func main() {
 			if i > j {
 				continue
 			}
-			if _, exists := uniquePairs[[2]int{i, j}]; exists {
-				continue
-			}
-			uniquePairs[[2]int{i, j}] = struct{}{}
 			pairs = append(pairs, [2]Point3D{points[i], points[j]})
 		}
 	}
+	fmt.Println("Total pairs:", len(pairs))
 
 	sort.SliceStable(pairs, func(i, j int) bool {
 		return distance3D(pairs[i][0], pairs[i][1]) < distance3D(pairs[j][0], pairs[j][1])
 	})
 
-	circuits := []Circuit{}
 	for _, pair := range pairs {
 		found := false
 		for i, circuit := range circuits {
 			if slices.Contains(circuit.Points, pair[0].Index) || slices.Contains(circuit.Points, pair[1].Index) {
 				if !slices.Contains(circuit.Points, pair[1].Index) {
 					circuits[i].Points = append(circuits[i].Points, pair[1].Index)
-					fmt.Printf("Adding points %d and %d to circuit %d\n", pair[0].Index, pair[1].Index, i)
 				}
 				if !slices.Contains(circuit.Points, pair[0].Index) {
 					circuits[i].Points = append(circuits[i].Points, pair[0].Index)
-					fmt.Printf("Adding points %d and %d to circuit %d\n", pair[0].Index, pair[1].Index, i)
 				}
 
 				found = true
@@ -88,8 +84,28 @@ func main() {
 		if !found {
 			circuits = append(circuits, Circuit{Points: []int{pair[0].Index, pair[1].Index}})
 		}
+
+		circuits = mergeCircuits(circuits)
+
+		if len(circuits) == 1 {
+			fmt.Printf("Last pair: %d, %d\n", pair[0].Index, pair[1].Index)
+			fmt.Printf("Res: %d\n", pair[0].X*pair[1].X)
+			break
+		}
 	}
 
+	sort.SliceStable(circuits, func(i, j int) bool {
+		return len(circuits[i].Points) > len(circuits[j].Points)
+	})
+}
+
+func distance3D(p1, p2 Point3D) float64 {
+	return math.Sqrt(math.Pow(float64(p1.X-p2.X), 2) +
+		math.Pow(float64(p1.Y-p2.Y), 2) +
+		math.Pow(float64(p1.Z-p2.Z), 2))
+}
+
+func mergeCircuits(circuits []Circuit) []Circuit {
 	for {
 		merged := false
 
@@ -104,7 +120,6 @@ func main() {
 						for _, p := range c2.Points {
 							if !slices.Contains(circuits[i].Points, p) {
 								circuits[i].Points = append(circuits[i].Points, p)
-								fmt.Printf("Merging circuit %d with circuit %d, adding point %d\n", i, j, p)
 							}
 						}
 						circuits = append(circuits[:j], circuits[j+1:]...)
@@ -126,16 +141,5 @@ func main() {
 		}
 	}
 
-	sort.SliceStable(circuits, func(i, j int) bool {
-		return len(circuits[i].Points) > len(circuits[j].Points)
-	})
-
-	fmt.Printf("Circuits: %v\n", circuits)
-	fmt.Printf("Total circuits: %d\n", len(circuits))
-}
-
-func distance3D(p1, p2 Point3D) float64 {
-	return math.Sqrt(math.Pow(float64(p1.X-p2.X), 2) +
-		math.Pow(float64(p1.Y-p2.Y), 2) +
-		math.Pow(float64(p1.Z-p2.Z), 2))
+	return circuits
 }
