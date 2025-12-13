@@ -5,152 +5,219 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"time"
 )
 
-type (
-	State   uint64
-	Machine struct {
-		state  State
-		pushes []State
-		ampers []int
-	}
-)
-
-func main() {
-	file, err := os.ReadFile("input.txt")
-	if err != nil {
-		panic(err)
-	}
-	lines := strings.Split(string(file), "\n")
-	machines := parseLines(lines)
-
-	count1 := puzzle1(machines)
-	fmt.Println("Puzzle I. Count [494]: ", count1)
+type ButtonCombination struct {
+	Joltages []int
+	Presses  int
 }
 
-func puzzle1(machines []Machine) int {
-	count := 0
-	for _, m := range machines {
-		combs := bfsXOR(m.state, m.pushes)
-		count += len(combs)
-	}
-	return count
+type Machine struct {
+	Lights   []int
+	Buttons  [][]int
+	Patterns map[string][]ButtonCombination
+	Joltages []int
 }
 
-type Sample struct {
-	state State
-	comb  []State
-}
+func parseInput(input string) []Machine {
+	var machines []Machine
 
-func onPush(state State, push State) State {
-	return state ^ push
-}
-
-func bfsXOR(target State, numbers []State) []State {
-	queue := []Sample{{state: 0, comb: []State{}}}
-
-	best := make(map[State]int)
-	best[0] = 0
-
-	for len(queue) > 0 {
-		current := queue[0]
-		queue = queue[1:]
-
-		if current.state == target {
-			return current.comb
-		}
-
-		for _, push := range numbers {
-			newVal := onPush(current.state, push)
-			newLen := len(current.comb) + 1
-
-			// если ещё не было или есть короче путь
-			if prevLen, ok := best[newVal]; !ok || newLen < prevLen {
-				best[newVal] = newLen
-				newComb := append([]State{}, current.comb...)
-				newComb = append(newComb, push)
-				queue = append(queue, Sample{state: newVal, comb: newComb})
-			}
-		}
-	}
-	return nil
-}
-
-func parseLines(lines []string) []Machine {
-	machines := make([]Machine, len(lines))
-	for j, line := range lines {
+	for _, line := range strings.Split(strings.TrimSpace(input), "\n") {
 		if line == "" {
 			continue
 		}
-		machines[j] = parseLine(line)
+
+		parts := strings.Fields(line)
+		lightSpec := parts[0]
+		joltageSpec := parts[len(parts)-1]
+		buttonSpecs := parts[1 : len(parts)-1]
+
+		// Parse lights
+		lights := make([]int, 0)
+		for _, c := range lightSpec[1 : len(lightSpec)-1] {
+			if c == '#' {
+				lights = append(lights, 1)
+			} else {
+				lights = append(lights, 0)
+			}
+		}
+
+		// Parse buttons
+		buttons := make([][]int, 0)
+		for _, buttonSpec := range buttonSpecs {
+			buttonStr := buttonSpec[1 : len(buttonSpec)-1]
+			buttonParts := strings.Split(buttonStr, ",")
+			button := make([]int, 0)
+			for _, part := range buttonParts {
+				n, _ := strconv.Atoi(part)
+				button = append(button, n)
+			}
+			buttons = append(buttons, button)
+		}
+
+		// Build patterns
+		patterns := make(map[string][]ButtonCombination)
+		for n := 0; n < (1 << len(buttons)); n++ {
+			lightResult := make([]int, len(lights))
+			joltageMultiplier := make([]int, len(lights))
+			presses := 0
+
+			for buttonIndex := 0; buttonIndex < len(buttons); buttonIndex++ {
+				if (n & (1 << buttonIndex)) != 0 {
+					btn := buttons[buttonIndex]
+					for _, light := range btn {
+						lightResult[light] ^= 1
+						joltageMultiplier[light]++
+					}
+					presses++
+				}
+			}
+
+			key := tupleToString(lightResult)
+			patterns[key] = append(patterns[key], ButtonCombination{
+				Joltages: joltageMultiplier,
+				Presses:  presses,
+			})
+		}
+
+		// Parse joltages
+		joltageStr := joltageSpec[1 : len(joltageSpec)-1]
+		joltageParts := strings.Split(joltageStr, ",")
+		joltages := make([]int, 0)
+		for _, part := range joltageParts {
+			n, _ := strconv.Atoi(part)
+			joltages = append(joltages, n)
+		}
+
+		machines = append(machines, Machine{
+			Lights:   lights,
+			Buttons:  buttons,
+			Patterns: patterns,
+			Joltages: joltages,
+		})
 	}
+
 	return machines
 }
 
-func parseLine(line string) Machine {
-	parts := strings.Split(line, " ")
-	machine := Machine{}
-	count := 0
-	machine.state, count = parseState(parts[0])
-	machine.ampers = parseAmpers(parts[len(parts)-1])
-	machine.pushes = parsePushes(parts[1:len(parts)-1], count)
-	return machine
+func tupleToString(arr []int) string {
+	parts := make([]string, len(arr))
+	for i, v := range arr {
+		parts[i] = strconv.Itoa(v)
+	}
+	return strings.Join(parts, ",")
 }
 
-func parsePushes(str []string, length int) []State {
-	var states []State
-	for _, sv := range str {
-		si := strings.TrimSpace(sv)
-		si = strings.TrimPrefix(si, "(")
-		si = strings.TrimSuffix(si, ")")
-		ns := strings.Split(si, ",")
-		bools := make([]bool, length)
-		for _, n := range ns {
-			parsed, _ := strconv.Atoi(n)
-			bools[parsed] = true
-		}
-		states = append(states, BoolsToBitmask(bools))
-	}
-	return states
+func joltageToString(arr []int) string {
+	return tupleToString(arr)
 }
 
-func parseAmpers(str string) []int {
-	s := strings.TrimSpace(str)
-	s = strings.TrimPrefix(s, "{")
-	s = strings.TrimSuffix(s, "}")
-	ns := strings.Split(s, ",")
-	nums := make([]int, len(ns))
-	for j, n := range ns {
-		nums[j], _ = strconv.Atoi(n)
+func part1(machines []Machine) int {
+	total := 0
+	for _, machine := range machines {
+		minPresses := int(^uint(0) >> 1) // Max int
+		key := tupleToString(machine.Lights)
+		if combinations, ok := machine.Patterns[key]; ok {
+			for _, c := range combinations {
+				if c.Presses < minPresses {
+					minPresses = c.Presses
+				}
+			}
+			total += minPresses
+		}
 	}
-	return nums
+	return total
 }
 
-func parseState(str string) (State, int) {
-	s := strings.TrimSpace(str)
-	s = strings.TrimPrefix(s, "[")
-	s = strings.TrimSuffix(s, "]")
-	var bools []bool
-	for _, b := range s {
-		if b == '#' {
-			bools = append(bools, true)
-		} else {
-			bools = append(bools, false)
-		}
+func subtractAndHalf(jolt1, jolt2 []int) []int {
+	result := make([]int, len(jolt1))
+	for i := range jolt1 {
+		result[i] = (jolt1[i] - jolt2[i]) / 2
 	}
-	return BoolsToBitmask(bools), len(s)
+	return result
 }
 
-func BoolsToBitmask(bools []bool) State {
-	var mask State
-	n := len(bools)
-	for j, b := range bools {
-		if j >= 64 {
-			break
-		}
-		if b {
-			mask |= 1 << uint(n-1-j)
+func isValidJoltage(joltages []int) bool {
+	for _, j := range joltages {
+		if j < 0 {
+			return false
 		}
 	}
-	return State(mask)
+	return true
+}
+
+func solve(joltages []int, patterns map[string][]ButtonCombination, target []int) *int {
+	// Check if we've reached the target
+	if slicesEqual(joltages, target) {
+		zero := 0
+		return &zero
+	}
+
+	// Pull out the least significant bit from the joltages
+	lsb := make([]int, len(joltages))
+	for i, j := range joltages {
+		lsb[i] = j & 1
+	}
+
+	lsbKey := tupleToString(lsb)
+	if combinations, ok := patterns[lsbKey]; ok {
+		var presses []int
+		for _, c := range combinations {
+			// Remove joltages produced by this button
+			newJoltage := subtractAndHalf(joltages, c.Joltages)
+			if isValidJoltage(newJoltage) {
+				if rest := solve(newJoltage, patterns, target); rest != nil {
+					presses = append(presses, c.Presses+2*(*rest))
+				}
+			}
+		}
+		if len(presses) > 0 {
+			minVal := presses[0]
+			for _, p := range presses {
+				if p < minVal {
+					minVal = p
+				}
+			}
+			return &minVal
+		}
+	}
+
+	return nil
+}
+
+func slicesEqual(a, b []int) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for i := range a {
+		if a[i] != b[i] {
+			return false
+		}
+	}
+	return true
+}
+
+func part2(machines []Machine) int {
+	total := 0
+	for _, m := range machines {
+		target := make([]int, len(m.Joltages))
+		if solution := solve(m.Joltages, m.Patterns, target); solution != nil {
+			total += *solution
+		}
+	}
+	return total
+}
+
+func main() {
+	data, _ := os.ReadFile("input.txt")
+	input := string(data)
+	machines := parseInput(input)
+
+	fmt.Printf("Part 1: %d\n", part1(machines))
+
+	start := time.Now()
+	result := part2(machines)
+	elapsed := time.Since(start).Seconds()
+	fmt.Printf("Part 2: %d (%.2fs)\n", result, elapsed)
 }
