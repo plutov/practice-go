@@ -109,10 +109,6 @@ func tupleToString(arr []int) string {
 	return strings.Join(parts, ",")
 }
 
-func joltageToString(arr []int) string {
-	return tupleToString(arr)
-}
-
 func part1(machines []Machine) int {
 	total := 0
 	for _, machine := range machines {

@@ -4,18 +4,21 @@ import (
 	_ "embed"
 	"fmt"
 	"log"
+	"os"
 	"regexp"
 	"strconv"
 	"strings"
 )
 
-//go:embed input.txt
-var inputText string
-
 func main() {
-	fmt.Printf("Magic id: %d\n", run1(inputText))
-	fmt.Println("-------------")
-	fmt.Printf("Magic id: %d\n", run2(inputText))
+	f, err := os.ReadFile("input.txt")
+	if err != nil {
+		panic(err)
+	}
+
+	inputText := string(f)
+
+	fmt.Println(run1(inputText))
 }
 
 type present struct {
@@ -59,10 +62,6 @@ func sumPresentsAndAreas(presents map[int]present, presentCounts []int) (totalPr
 	return totalPresents, totalArea
 }
 
-func run2(input string) int {
-	return 0
-}
-
 func parse(input string) (map[int]present, []region) {
 	segments := SplitByEmptyNewlineToSlices(input)
 
@@ -83,7 +82,9 @@ func parse(input string) (map[int]present, []region) {
 	for i, rc := range regionChunk {
 		r := region{id: i}
 		rcc := strings.Split(rc, ":")
-		fmt.Sscanf(rcc[0], "%dx%d", &r.sizeX, &r.sizeY)
+		if _, err := fmt.Sscanf(rcc[0], "%dx%d", &r.sizeX, &r.sizeY); err != nil {
+			panic(fmt.Sprintf("error parsing region size: %v", err))
+		}
 		r.area = r.sizeX * r.sizeY
 		r.presents = StringsToIntSlice(rcc[1])
 		regions = append(regions, r)

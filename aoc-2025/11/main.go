@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"log"
 	"os"
 	"strings"
 )
@@ -17,16 +16,11 @@ var (
 
 func readGraph(filename string) Graph {
 	g := make(Graph)
-	file, err := os.Open(filename)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer file.Close()
+	file, _ := os.Open(filename)
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		line := scanner.Text()
-		// Split on ": " to separate node from neighbors
 		parts := strings.Split(line, ": ")
 		if len(parts) < 2 {
 			continue
